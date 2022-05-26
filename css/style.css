@@ -1,3 +1,14 @@
 canvas {
     border: solid black 5px;
 }
+
+
+#battle-scene {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu-canvas {
+    
+}
