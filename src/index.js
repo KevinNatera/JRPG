@@ -1,18 +1,34 @@
 const GameClass = require("./game.js");
 const PlayerClass = require("./player.js");
 
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    const canvas = document.getElementById("battle-scene");
+    const backgroundCanvas = document.getElementById("battle-scene");
+    const backGroundCTX = backgroundCanvas.getContext("2d");
     
-    // cavas.style.background = "url('../assets/icons/gold')"
+    const menuCanvas = document.getElementById("menu-canvas");
+    const menuCTX = menuCanvas.getContext("2d");
+    
+    menuCanvas.style.position = "absolute";
+    menuCanvas.style.top = "400px";
+    menuCanvas.style.left= "100px";
 
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = "blue";
-    ctx.fillRect(0,0,canvas.width,canvas.height)
-    
-    const game = new GameClass();
-    
-    // new GameView(game,ctx).start();
+    menuCTX.fillStyle = "blue"
+    menuCTX.fillRect(0,0,menuCanvas.width, menuCanvas.height )
+
+    const playerSpriteSheet = new Image()
+    playerSpriteSheet.src = "../assets/spritesheets/warrior_spritesheet.png"
+    playerSpriteSheet.onload - function() {
+        animate();
+    }
 
 });
+
+function animate() {
+    
+}
