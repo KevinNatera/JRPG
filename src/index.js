@@ -93,7 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     //------^---MESSAGE-------^---
+    const messageCanvas = document.getElementById("message-canvas");
+    const messageCTX = messageCanvas.getContext("2d");
 
+
+
+    messageCanvas.style.position = "absolute";
+    messageCanvas.style.top = "50px";
+    messageCanvas.style.left= "110px";
 
 
 
