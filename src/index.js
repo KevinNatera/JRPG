@@ -115,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function drawPlayer() {
         playerCTX.drawImage(warriorSpritesheet , 14 , 713, 43, 55, 200, 250, 43 * 2, 55 * 2) 
-        
     }
     
 
@@ -125,9 +124,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     //----------ENEMY-------------
+    const enemyCanvas = document.getElementById("enemy-canvas");
+    const enemyCTX = enemyCanvas.getContext("2d");
 
 
 
+    enemyCanvas.style.position = "absolute";
+    enemyCanvas.style.top = "10px";
+    enemyCanvas.style.left= "410px";
+    
+    //FIND ENEMY SPRITE AND GET MESSAGE BOX UP
+    const enemyMageSprite = new Image()
+    enemyMageSprite.src = "../assets/spritesheets/mage_spritesheet.png"
+    enemyMageSprite.onload = function() {
+        drawEnemy();
+    }   
+
+  
+
+
+    function drawEnemy() {
+        enemyCTX.drawImage(enemyMageSprite , 9 , 10, 25, 31, 200, 265, 25 * 3, 31 * 3) 
+        
+    }
 
     //-----^--ENEMY---------^---
 
