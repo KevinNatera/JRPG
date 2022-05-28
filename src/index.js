@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const backgroundCanvas = document.getElementById("battle-scene");
     const backGroundCTX = backgroundCanvas.getContext("2d");
     
+
+    //------MENU-----------
     const menuCanvas = document.getElementById("menu-canvas");
     const menuCTX = menuCanvas.getContext("2d");
     
@@ -41,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     menuCanvas.addEventListener("mousemove", displayInfo) 
     menuCanvas.addEventListener("mouseout", hideInfo)
 
+
+
     function displayInfo(event) {
         const cursorX = event.clientX
         const cursorY = event.clientY
@@ -48,13 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const buttonY = 480
 
 
-        if (isPointInsideRect(cursorX,cursorY, 80, buttonY, buttonSize,buttonSize)) { //attack
+        if (isPointInsideRect(cursorX, cursorY, 145, buttonY, buttonSize,buttonSize)) { //attack
             console.log("ATTACK")
-        } else if (isPointInsideRect(cursorX,cursorY, 230, buttonY, buttonSize,buttonSize)) { //skills
+        } else if (isPointInsideRect(cursorX,cursorY,290, buttonY, buttonSize,buttonSize)) { //skills
             console.log("ABILITIES")
-        } else if (isPointInsideRect(cursorX,cursorY, 380, buttonY, buttonSize,buttonSize)) { //items
+        } else if (isPointInsideRect(cursorX,cursorY, 435, buttonY, buttonSize,buttonSize)) { //items
             console.log("ITEMS")
-        } else if (isPointInsideRect(cursorX,cursorY, 530, buttonY, buttonSize,buttonSize)) { //defend
+        } else if (isPointInsideRect(cursorX,cursorY, 580, buttonY, buttonSize,buttonSize)) { //defend
             console.log("DEFEND")
         } else {
 
@@ -72,10 +76,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     
-
     function isPointInsideRect(pointX,pointY,rectX,rectY,rectWidth,rectHeight){
         return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
                 (rectY <= pointY) && (rectY + rectHeight >= pointY);
     }
+
+    //--^---MENU ----^--
+
+
+
+
+
+    //--------MESSAGE-------------
+
+
+
+
+    //------^---MESSAGE-------^---
+
+
+
+
+
+
+    //--------PLAYER -------------
+    const playerCanvas = document.getElementById("player-canvas");
+    const playerCTX = playerCanvas.getContext("2d");
+
+    playerCanvas.style.position = "absolute";
+    playerCanvas.style.top = "10px";
+    playerCanvas.style.left= "10px";
+
+    const warriorSpritesheet = new Image()
+    warriorSpritesheet.src = "../assets/spritesheets/warrior_spritesheet.png"
+    warriorSpritesheet.onload = function() {
+        drawPlayer();
+    }
+
+    function drawPlayer() {
+        playerCTX.drawImage(warriorSpritesheet , 14 , 713, 43, 55, 200, 250, 43 * 2, 55 * 2) 
+        
+    }
+    
+
+    //----^---PLAYER ------^------
+
+
+
+
+    //----------ENEMY-------------
+
+
+
+
+    //-----^--ENEMY---------^---
+
+
 });
 
