@@ -12,3 +12,25 @@ canvas {
 #menu-canvas {
     
 }
+
+#message-canvas {
+    border: solid black 5px;
+}
+
+
+progress {
+    -webkit-appearance: none;
+    background-color: red;
+}
+
+progress::-webkit-progress-value {
+    background: green;
+    border: solid 2px black;
+}
+
+
+
+progress::-webkit-progress-bar {
+    background-color: red;
+    border: solid 3px black;
+}

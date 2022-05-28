@@ -109,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //--------PLAYER -------------
     const playerCanvas = document.getElementById("player-canvas");
     const playerCTX = playerCanvas.getContext("2d");
+    const playerHealthBar = document.getElementById("player-health-bar")
 
     playerCanvas.style.position = "absolute";
     playerCanvas.style.top = "10px";
@@ -122,6 +123,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function drawPlayer() {
         playerCTX.drawImage(warriorSpritesheet , 14 , 713, 43, 55, 200, 250, 43 * 2, 55 * 2) 
+        
+        playerHealthBar.style.position = "absolute"
+        playerHealthBar.style.top = "220px";
+        playerHealthBar.style.left = "180px";
+       
+        playerHealthBar.value -= 10
+       
+       
     }
     
 
@@ -133,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //----------ENEMY-------------
     const enemyCanvas = document.getElementById("enemy-canvas");
     const enemyCTX = enemyCanvas.getContext("2d");
+    const enemyHealthBar = document.getElementById("enemy-health-bar")
 
 
 
@@ -151,8 +161,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function drawEnemy() {
-        enemyCTX.drawImage(enemyMageSprite , 9 , 10, 25, 31, 200, 265, 25 * 3, 31 * 3) 
-        
+        enemyCTX.drawImage(enemyMageSprite , 9 , 10, 25, 31, 200, 265, 25 * 3, 31 * 3)
+
+        enemyHealthBar.style.position = "absolute"
+        enemyHealthBar.style.top = "230px";
+        enemyHealthBar.style.left = "570px";
+       
+        enemyHealthBar.value -= 10
     }
 
     //-----^--ENEMY---------^---
