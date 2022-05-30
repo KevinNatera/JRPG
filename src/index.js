@@ -8,45 +8,48 @@ const EnemyClass = require("./enemy.js");
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  
+
     const backgroundCanvas = document.getElementById("battle-scene");
-    const backGroundCTX = backgroundCanvas.getContext("2d");
-    
-    function isPointInsideRect(pointX,pointY,rectX,rectY,rectWidth,rectHeight){
-        return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
-                (rectY <= pointY) && (rectY + rectHeight >= pointY);
+    const backgroundCTX = backgroundCanvas.getContext("2d");
+
+
+    const backgroundImage = new Image()
+    backgroundImage.src = "../assets/general_assets/background.png"
+    backgroundImage.onload = function() {
+        backgroundCTX.drawImage(backgroundImage,0,0,800,600)
     }
+
+
+    
+   
 
 
     //--------MESSAGE-----------------------------------------------------------------------------------
     //TODO: add message log of all messages printed 
     //TODO: convert this into a div
 
-    const messageCanvas = document.getElementById("message-canvas");
-    const messageCTX = messageCanvas.getContext("2d");
-
-    messageCanvas.style.position = "absolute";
-    messageCanvas.style.top = "50px";
-    messageCanvas.style.left= "110px";
-
-    messageCTX.font = "35px Verdana";
-    messageCTX.textAlign = "center"; 
-    messageCTX.fillText("Battle Start!", messageCanvas.width / 2, 60)
+    const messageDiv = document.getElementById("message-div");
+    
+    messageDiv.style.position = "absolute";
+    messageDiv.style.top = "50px";
+    messageDiv.style.left= "110px";
+    messageDiv.innerHTML = "Battle Start!"
 
 
 
     function message(text) {
-        messageCTX.clearRect(0,0, messageCanvas.width, messageCanvas.height)
-        messageCTX.fillText(text, messageCanvas.width / 2, 60)
+        messageDiv.innerHTML = text
     }
 
+ 
+
     function reportDamage(damageDealer, damage, target) {
-        messageCTX.clearRect(0,0, messageCanvas.width, messageCanvas.height)
-        messageCTX.fillText(damageDealer + ` deals ${damage} to ` + target + "!", messageCanvas.width / 2, 60)
+        messageDiv.innerHTML = damageDealer + ` deals ${damage} to ` + target + "!"
     }
 
     function reportDefeated(defeatedTarget) {
-        messageCTX.clearRect(0,0, messageCanvas.width, messageCanvas.height)
-        messageCTX.fillText(defeatedTarget + " has been defeated!", messageCanvas.width / 2, 60)
+        messageDiv.innerHTML = defeatedTarget + " has been defeated!"
     }
 
 
@@ -287,11 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
             infoDiv.style.display = "none";
         }
 
-        // console.log("x")
-        // console.log(cursorX)
-        // console.log("y")
-        // console.log(cursorY)
-       
+
     }
 
     
@@ -384,3 +383,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+
+
+//Helper functions
+
+function isPointInsideRect(pointX,pointY,rectX,rectY,rectWidth,rectHeight){
+    return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
+            (rectY <= pointY) && (rectY + rectHeight >= pointY);
+}

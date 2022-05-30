@@ -2,22 +2,6 @@ canvas {
     /* border: solid black 5px; */
 }
 
-#info-div {
-    font-size: 20px;
-    font-family: "Verdana";
-    text-align: center;
-    display: table;
-    vertical-align: middle;
-    background-color: white;
-    word-wrap: normal;
-}
-
-#info-div::first-line {
-    font-weight: bold;
-}
-
-
-
 #battle-scene {
     display: flex;
     justify-content: center;
@@ -26,11 +10,30 @@ canvas {
 
 }
 
-#message-canvas {
+#info-div {
+    font-size: 20px;
+    font-family: "Verdana";
+    text-align: center;
+    display: table;
+    vertical-align: middle;
+    background-color: white;
+    word-wrap: normal;
     border: solid black 5px;
 }
 
-#info-div {
+#info-div::first-line {
+    font-weight: bold;
+}
+
+
+#message-div {
+    font-size: 35px;
+    font-family: "Verdana";
+    text-align: center;
+    display: table;
+    vertical-align: middle;
+    background-color: white;
+    word-wrap: normal;
     border: solid black 5px;
 }
 
