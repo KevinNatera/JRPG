@@ -26,6 +26,29 @@ document.addEventListener("DOMContentLoaded", () => {
     messageCanvas.style.top = "50px";
     messageCanvas.style.left= "110px";
 
+    messageCTX.font = "40px Arial";
+    messageCTX.textAlign = "center";
+    messageCTX.fillText("Battle Start!", messageCanvas.width / 2, messageCanvas.height / 2)
+
+
+
+    function message(text) {
+        messageCTX.clearRect(0,0, messageCanvas.width, messageCanvas.height)
+        messageCTX.fillText(text, messageCanvas.width / 2, messageCanvas.height / 2)
+    }
+
+    function reportDamage(damageDealer, damage, target) {
+        messageCTX.clearRect(0,0, messageCanvas.width, messageCanvas.height)
+        messageCTX.fillText(damageDealer + ` deals ${damage} to ` + target + "!", messageCanvas.width / 2, messageCanvas.height / 2)
+    }
+
+    function reportDefeated(defeatedTarget) {
+        messageCTX.clearRect(0,0, messageCanvas.width, messageCanvas.height)
+        messageCTX.fillText(defeatedTarget + " has been defeated!", messageCanvas.width / 2, messageCanvas.height / 2)
+    }
+
+
+
 
   //------^---MESSAGE-------^--------------------------------------------------------------------------------
 
@@ -192,16 +215,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (isPointInsideRect(cursorX, cursorY, 145, buttonY, buttonSize,buttonSize)) { //attack
+            //Player Attack
+            menuCanvas.removeEventListener("click", executeCommand)
 
-            enemy.currentHealth -= player.dealDamage(enemy);
+            let playerDamage = player.dealDamage(enemy);
+
+            enemy.currentHealth -= playerDamage
+            reportDamage("Player",playerDamage, "Enemy")
+
             updateEnemyHealthBar();
             console.log(enemy.currentHealth)
-            
-            player.currentHealth -= enemy.dealDamage(player);
-            updatePlayerHealthBar();
-            console.log(player.currentHealth)
 
-        } else if (isPointInsideRect(cursorX,cursorY,290, buttonY, buttonSize,buttonSize)) { //skills
+            if (enemy.currentHealth === 0) {
+                setTimeout(function() {
+                    reportDefeated("Enemy") 
+            }, 1000)
+
+               
+            } else {
+                //------Enemy Attack--------------------------
+                const enemyTurn = setTimeout(function() {
+
+                    let enemyDamage = enemy.dealDamage(player);
+                    player.currentHealth -= enemyDamage
+        
+                    reportDamage("Enemy", enemyDamage, "Player")
+                    updatePlayerHealthBar();
+                    console.log(player.currentHealth)
+    
+                    if (player.currentHealth === 0) {
+                        setTimeout(function() {
+                            reportDefeated("Player")
+                        }, 1000)
+                    } else {
+                        menuCanvas.addEventListener("click", executeCommand)
+                    }
+                    
+                }, 1000)
+
+            }
+
+         
+
+
+           
+            
+          
+            
+       
+
+
+           
+
+        } else if (isPointInsideRect(cursorX,cursorY, 290, buttonY, buttonSize,buttonSize)) { //skills
 
             console.log("ABILITIES")
             

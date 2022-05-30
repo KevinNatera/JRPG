@@ -1,5 +1,5 @@
 canvas {
-    border: solid black 5px;
+    /* border: solid black 5px; */
 }
 
 
@@ -7,6 +7,16 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: solid black 5px;
+
+}
+
+#player-canvas {
+    
+}
+
+#enemy-canvas {
+
 }
 
 #menu-canvas {
