@@ -26,25 +26,25 @@ document.addEventListener("DOMContentLoaded", () => {
     messageCanvas.style.top = "50px";
     messageCanvas.style.left= "110px";
 
-    messageCTX.font = "40px Arial";
-    messageCTX.textAlign = "center";
-    messageCTX.fillText("Battle Start!", messageCanvas.width / 2, messageCanvas.height / 2)
+    messageCTX.font = "40px Verdana";
+    messageCTX.textAlign = "center"; 
+    messageCTX.fillText("Battle Start!", messageCanvas.width / 2, 60)
 
 
 
     function message(text) {
         messageCTX.clearRect(0,0, messageCanvas.width, messageCanvas.height)
-        messageCTX.fillText(text, messageCanvas.width / 2, messageCanvas.height / 2)
+        messageCTX.fillText(text, messageCanvas.width / 2, 60)
     }
 
     function reportDamage(damageDealer, damage, target) {
         messageCTX.clearRect(0,0, messageCanvas.width, messageCanvas.height)
-        messageCTX.fillText(damageDealer + ` deals ${damage} to ` + target + "!", messageCanvas.width / 2, messageCanvas.height / 2)
+        messageCTX.fillText(damageDealer + ` deals ${damage} to ` + target + "!", messageCanvas.width / 2, 60)
     }
 
     function reportDefeated(defeatedTarget) {
         messageCTX.clearRect(0,0, messageCanvas.width, messageCanvas.height)
-        messageCTX.fillText(defeatedTarget + " has been defeated!", messageCanvas.width / 2, messageCanvas.height / 2)
+        messageCTX.fillText(defeatedTarget + " has been defeated!", messageCanvas.width / 2, 60)
     }
 
 
