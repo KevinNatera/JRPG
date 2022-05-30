@@ -1,7 +1,7 @@
 class Player {
     constructor() {
-        this.currentHealth = 50
-        this.maxHealth = 100
+        this.currentHealth = 200
+        this.maxHealth = 300
         this.attack = 100
         this.defense = 50
         this.magic = 10
@@ -16,6 +16,10 @@ class Player {
         console.log(`Player deals ${damage} damage to enemy!`)
         return damage
     }
+
+    
+
+
 }
 
 

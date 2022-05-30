@@ -2,9 +2,9 @@ class Enemy {
     constructor() {
         this.currentHealth = 230
         this.maxHealth = 230
-        this.attack = 50
+        this.attack = 80
         this.defense = 25
-        this.magic = 10
+        this.magic = 999
         this.speed = 50
     }
 
