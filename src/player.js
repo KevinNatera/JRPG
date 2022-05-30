@@ -8,8 +8,13 @@ class Player {
         this.speed = 50
     }
 
-    dealDamage() {
-        console.log(this.attack)
+    dealDamage(enemy) {
+        let damage = this.attack - enemy.defense 
+        if (damage < 1) damage = 1
+        if (enemy.currentHealth - damage < 0) damage = enemy.currentHealth
+        
+        console.log(`Player deals ${damage} damage to enemy!`)
+        return damage
     }
 }
 

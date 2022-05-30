@@ -1,6 +1,6 @@
 const GameClass = require("./game.js");
 const PlayerClass = require("./player.js");
-
+const EnemyClass = require("./enemy.js");
 
 
 
@@ -17,22 +17,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    //--------MESSAGE-------------
+    //--------MESSAGE-----------------------------------------------------------------------------------
 
     const messageCanvas = document.getElementById("message-canvas");
     const messageCTX = messageCanvas.getContext("2d");
-
-
 
     messageCanvas.style.position = "absolute";
     messageCanvas.style.top = "50px";
     messageCanvas.style.left= "110px";
 
-  //------^---MESSAGE-------^---
+
+  //------^---MESSAGE-------^--------------------------------------------------------------------------------
 
 
 
-    //--------PLAYER -------------
+    //--------PLAYER --------------------------------------------------------------------------------------
     const playerCanvas = document.getElementById("player-canvas");
     const playerCTX = playerCanvas.getContext("2d");
     const playerHealthBar = document.getElementById("player-health-bar")
@@ -48,37 +47,38 @@ document.addEventListener("DOMContentLoaded", () => {
         drawPlayer();
     }
 
-    function drawPlayer() {
+    function drawPlayer() {      
         playerCTX.drawImage(warriorSpritesheet , 14 , 713, 43, 55, 200, 250, 43 * 2, 55 * 2) 
         
         playerHealthBar.style.position = "absolute"
         playerHealthBar.style.top = "220px";
         playerHealthBar.style.left = "180px";
        
+        updatePlayerHealthBar()
+    }
+
+    function updatePlayerHealthBar() {
         playerHealthBar.value = player.currentHealth
         playerHealthBar.max = player.maxHealth
-       
-       
     }
     
 
-    //----^---PLAYER ------^------
+    //----^---PLAYER ------^----------------------------------------------------------------------------
 
 
 
 
-    //----------ENEMY-------------
+    //----------ENEMY-----------------------------------------------------------------------------------
     const enemyCanvas = document.getElementById("enemy-canvas");
     const enemyCTX = enemyCanvas.getContext("2d");
     const enemyHealthBar = document.getElementById("enemy-health-bar")
-
+    const enemy =  new EnemyClass();
 
 
     enemyCanvas.style.position = "absolute";
     enemyCanvas.style.top = "10px";
     enemyCanvas.style.left= "410px";
     
-    //FIND ENEMY SPRITE AND GET MESSAGE BOX UP
     const enemyMageSprite = new Image()
     enemyMageSprite.src = "../assets/spritesheets/mage_spritesheet.png"
     enemyMageSprite.onload = function() {
@@ -95,16 +95,21 @@ document.addEventListener("DOMContentLoaded", () => {
         enemyHealthBar.style.top = "230px";
         enemyHealthBar.style.left = "570px";
        
-        enemyHealthBar.value -= 10
+        updateEnemyHealthBar();
     }
 
-    //-----^--ENEMY---------^---
+    function updateEnemyHealthBar() {
+        enemyHealthBar.value = enemy.currentHealth
+        enemyHealthBar.max = enemy.maxHealth
+    }
+
+    //-----^--ENEMY---------^-------------------------------------------------------------------------
 
 
 
 
 
-    //------MENU-----------
+    //------MENU---------------------------------------------------------------------------------
     const menuCanvas = document.getElementById("menu-canvas");
     const menuCTX = menuCanvas.getContext("2d");
     
@@ -145,13 +150,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (isPointInsideRect(cursorX, cursorY, 145, buttonY, buttonSize,buttonSize)) { //attack
+
             console.log("ATTACK")
+
         } else if (isPointInsideRect(cursorX,cursorY,290, buttonY, buttonSize,buttonSize)) { //skills
+
             console.log("ABILITIES")
+
         } else if (isPointInsideRect(cursorX,cursorY, 435, buttonY, buttonSize,buttonSize)) { //items
+
             console.log("ITEMS")
+
         } else if (isPointInsideRect(cursorX,cursorY, 580, buttonY, buttonSize,buttonSize)) { //defend
+
             console.log("DEFEND")
+
         } else {
 
         }
@@ -179,19 +192,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (isPointInsideRect(cursorX, cursorY, 145, buttonY, buttonSize,buttonSize)) { //attack
-            player.dealDamage();
+
+            enemy.currentHealth -= player.dealDamage(enemy);
+            updateEnemyHealthBar();
+            console.log(enemy.currentHealth)
+            
+            player.currentHealth -= enemy.dealDamage(player);
+            updatePlayerHealthBar();
+            console.log(player.currentHealth)
+
         } else if (isPointInsideRect(cursorX,cursorY,290, buttonY, buttonSize,buttonSize)) { //skills
+
             console.log("ABILITIES")
+            
         } else if (isPointInsideRect(cursorX,cursorY, 435, buttonY, buttonSize,buttonSize)) { //items
+            
             console.log("ITEMS")
+
         } else if (isPointInsideRect(cursorX,cursorY, 580, buttonY, buttonSize,buttonSize)) { //defend
+
             console.log("DEFEND")
+
         } else {
 
         }
     }
 
-    //--^---MENU ----^--
+    //--^---MENU ----^------------------------------------------------------------------------
 
 
 });
