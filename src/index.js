@@ -8,8 +8,6 @@ const EnemyClass = require("./enemy.js");
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  
-
     const backgroundCanvas = document.getElementById("battle-scene");
     const backgroundCTX = backgroundCanvas.getContext("2d");
 
@@ -21,14 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    
-   
-
 
     //--------MESSAGE-----------------------------------------------------------------------------------
     //TODO: add message log of all messages printed 
-    //TODO: convert this into a div
-
     const messageDiv = document.getElementById("message-div");
     
     messageDiv.style.position = "absolute";
@@ -42,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         messageDiv.innerHTML = text
     }
 
- 
 
     function reportDamage(damageDealer, damage, target) {
         messageDiv.innerHTML = damageDealer + ` deals ${damage} to ` + target + "!"
@@ -61,13 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
    //----------INFO-----------------------------------------------------------------------------------------
     const infoDiv = document.getElementById("info-div");
-    
-
 
     infoDiv.style.position = "absolute";
     infoDiv.style.top = "100px";
     infoDiv.style.left= "110px";
     infoDiv.style.display = "none";
+    
 
 
     function repositionInfoDiv(x, y) {
@@ -124,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const cursorX = event.clientX
         const cursorY = event.clientY
 
-
         if (isPointInsideRect(cursorX, cursorY, 180, 238, 200 , 200)) { 
             repositionInfoDiv(cursorX, cursorY)
             fillInfo(`
@@ -142,6 +132,33 @@ document.addEventListener("DOMContentLoaded", () => {
             
         } else {
             hideInfoDiv();
+        }
+
+
+
+        //TODO----------------------------------------------------------------------------------------------------------------------------
+        function playerAttackAnimation() {
+            const scale = 2
+        
+            // 408 limit at 273
+                            //ssX, ssY, sw, sh, cx,xy, cw,ch
+
+            // for (let i = 0; i < frameArr.length; i++ ) {
+            //     setTimeout(function() {
+            //         drawPlayerFrame(14,713,43,55,200,250,43 * scale, 55 * scale)
+            //    }, 100)
+            // }
+            
+
+
+
+
+
+        }
+
+        function drawPlayerFrame(spritesheetX,spritesheetY, spriteWidth, spriteHeight, canvasX, canvasY, canvasWidth, canvasHeight) {
+            player.clearRect(0,0,playerCanvas.width,playerCanvas.width)
+            playerCTX.drawImage(warriorSpritesheet , spritesheetX , spritesheetY, spriteWidth, spriteHeight, canvasX, canvasY, canvasWidth, canvasHeight)
         }
 
     }
@@ -171,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         drawEnemy();
     }   
 
-  
+
 
 
     function drawEnemy() {
@@ -213,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 Speed: ${enemy.speed}
 
             `)
-            infoDiv
+            
 
         } else {
             hideInfoDiv()
@@ -271,17 +288,17 @@ document.addEventListener("DOMContentLoaded", () => {
             fillInfo(`Deal ${player.attack - enemy.defense} damage <br> to the enemy.`)
 
 
-        } else if (isPointInsideRect(cursorX,cursorY,282, buttonY, buttonSize,buttonSize)) { //skills
+        } else if (isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //skills
             
             repositionInfoDiv(cursorX, cursorY)
             fillInfo("Use special abilities. <br>  (If you HAD any!)")
 
-        } else if (isPointInsideRect(cursorX,cursorY, 427, buttonY, buttonSize,buttonSize)) { //items
+        } else if (isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
     
             repositionInfoDiv(cursorX, cursorY)
             fillInfo("Use items to aid you <br> in battle. (If you HAD any!)")
             
-        } else if (isPointInsideRect(cursorX,cursorY, 572, buttonY, buttonSize,buttonSize)) { //defend
+        } else if (isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //defend
             
             repositionInfoDiv(cursorX, cursorY)
             fillInfo("Boost your defense <br> by 50% for one turn.")
@@ -306,14 +323,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //attack
             //Player Attack
             menuCanvas.removeEventListener("click", executeCommand)
+            
+            // playerAttackAnimation();
 
             let playerDamage = player.dealDamage(enemy);
-
             enemy.currentHealth -= playerDamage
             reportDamage("Player",playerDamage, "Enemy")
-
             updateEnemyHealthBar();
-            console.log(enemy.currentHealth)
+
+            console.log(`Enemy hp: ${enemy.currentHealth}`)
 
             //--------Enemy is defeated
             if (enemy.currentHealth === 0) {
@@ -330,16 +348,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
            
 
-        } else if (isPointInsideRect(cursorX,cursorY, 282, buttonY, buttonSize,buttonSize)) { //skills
+        } else if (isPointInsideRect(cursorX,cursorY, 287, buttonY, buttonSize,buttonSize)) { //skills
 
             console.log("ABILITIES")
             
-        } else if (isPointInsideRect(cursorX,cursorY, 427, buttonY, buttonSize,buttonSize)) { //items
+        } else if (isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
             
             console.log("ITEMS")
 
-        } else if (isPointInsideRect(cursorX,cursorY, 572, buttonY, buttonSize,buttonSize)) { //defend
-           
+        } else if (isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //defend
+           menuCanvas.removeEventListener("click", executeCommand)
            player.defense = player.defense * 1.50
            message("Defense boosted for one turn!")
            enemyTurn();
@@ -360,7 +378,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     player.currentHealth -= enemyDamage
                     reportDamage("Enemy", enemyDamage, "Player")
                     updatePlayerHealthBar();
-                    console.log(player.currentHealth)
+                    
+                    console.log(`Player hp: ${player.currentHealth}`)
                 
                 //------Player is defeated
                      if (player.currentHealth === 0) {
