@@ -33,19 +33,40 @@
     border: solid black 5px;
 }
 
-progress {
+
+/* Healthbars */
+#player-health-bar, #enemy-health-bar {
     -webkit-appearance: none;
     background-color: red;
 }
 
-progress::-webkit-progress-value {
+#player-health-bar::-webkit-progress-value, #enemy-health-bar::-webkit-progress-value {
     background: green;
     border: solid 2px black;
 }
 
 
 
-progress::-webkit-progress-bar {
+#player-health-bar::-webkit-progress-bar, #enemy-health-bar::-webkit-progress-bar {
+    background-color: red;
+    border: solid 3px black;
+}
+
+/* AP Bars */
+
+#player-AP-bar, #enemy-AP-bar {
+    -webkit-appearance: none;
+    background-color: red;
+}
+
+#player-AP-bar::-webkit-progress-value, #enemy-AP-bar::-webkit-progress-value {
+    background: yellow;
+    border: solid 2px black;
+}
+
+
+
+#player-AP-bar::-webkit-progress-bar, #enemy-AP-bar::-webkit-progress-bar {
     background-color: red;
     border: solid 3px black;
 }

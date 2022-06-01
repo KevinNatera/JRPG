@@ -1,11 +1,12 @@
 class Enemy {
     constructor() {
-        this.currentHealth = 230000
-        this.maxHealth = 230
+        this.currentHealth = 9999
+        this.maxHealth = 9999
+        this.currentAP = 10
+        this.maxAP = 10
         this.attack = 80
         this.defense = 25
         this.magic = 100
-        this.speed = 50
         this.player = 0
     }
 
@@ -48,6 +49,7 @@ class Enemy {
         if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         console.log(`Enemy deals ${damage} damage to player!`)
         return damage
+        //rerfactor to return player to change player stats
     }
 }
 

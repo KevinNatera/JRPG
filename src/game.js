@@ -112,16 +112,16 @@ class Game {
             this.fillInfo(`
                 Health: ${this.player.currentHealth} / ${this.player.maxHealth}
                 <br>
+                AP: ${this.player.currentAP} / ${this.player.maxAP}
+                <br>
                 Attack: ${this.player.attack}
                 <br>
                 Defense: ${this.player.defense}
                 <br>
-                Magic: ${this.player.magic}
-                <br>
-                Speed: ${this.player.speed}   
+                Magic: ${this.player.magic}   
                 `)      
         } else {
-                this.hideInfoDiv();
+            this.hideInfoDiv();
         }
    }
 
@@ -201,16 +201,15 @@ class Game {
         if (this.isPointInsideRect(cursorX, cursorY, 571, 248, 175 , 200)) { 
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo(`
-
                 Health: ${this.enemy.currentHealth} / ${this.enemy.maxHealth}
+                <br>
+                AP: ${this.enemy.currentAP} / ${this.enemy.maxAP}
                 <br>
                 Attack: ${this.enemy.attack}
                 <br>
                 Defense: ${this.enemy.defense}
                 <br>
                 Magic:  ${this.enemy.magic}
-                <br> 
-                Speed: ${this.enemy.speed}
                 `)
         } else {
             this.hideInfoDiv()
@@ -254,13 +253,13 @@ class Game {
 
         } else if (this.isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //skills
             
-             this.repositionInfoDiv(cursorX, cursorY)
-             this.fillInfo("Use special abilities. <br>  (If you HAD any!)")
+            this.repositionInfoDiv(cursorX, cursorY)
+            this.fillInfo("Use special abilities. <br> (If you HAD any!) <br> These typically cost Ability Points. (AP)")
 
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
     
             this.repositionInfoDiv(cursorX, cursorY)
-            this.fillInfo("Use items to aid you <br> in battle. (If you HAD any!)")
+            this.fillInfo("Use items to aid you <br> in battle. <br> (If you HAD any!)")
             
         } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //defend
             
