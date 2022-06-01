@@ -4,7 +4,7 @@ class Enemy {
         this.maxHealth = 230
         this.attack = 80
         this.defense = 25
-        this.magic = 999
+        this.magic = 100
         this.speed = 50
         this.player = 0
     }
@@ -23,8 +23,8 @@ class Enemy {
         this.player = player
         let num = Math.floor(Math.random() * 100);
         console.log(num)
-        if (num < 3 ) {
-            attackOne(player)
+        if (num < 50 ) {
+            return this.attackOne.bind(this)();
         } else {
          return this.attackTwo.bind(this)(); //<-- remove parentheses for funny msg
         }
@@ -32,10 +32,10 @@ class Enemy {
     }
     
 
-    attackOne(player) {
-        let damage = this.attack - player.defense 
+    attackOne() {
+        let damage = this.attack - this.player.defense 
         if (damage < 1) damage = 1
-        if (player.currentHealth - damage < 0) damage = player.currentHealth
+        if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         
         console.log(`Enemy deals ${damage} damage to player!`)
         return damage
