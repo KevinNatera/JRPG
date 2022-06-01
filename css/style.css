@@ -67,6 +67,6 @@
 
 
 #player-AP-bar::-webkit-progress-bar, #enemy-AP-bar::-webkit-progress-bar {
-    background-color: red;
+    background-color: black;
     border: solid 3px black;
 }

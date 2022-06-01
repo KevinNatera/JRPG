@@ -21,7 +21,9 @@ class Game {
         this.enemy = new EnemyClass()
 
         this.playerHealthBar = document.getElementById("player-health-bar")
+        this.playerAPBar = document.getElementById("player-AP-bar")
         this.enemyHealthBar = document.getElementById("enemy-health-bar")
+        this.enemyAPBar = document.getElementById("enemy-AP-bar")
 
         this.messageDiv = document.getElementById("message-div");
         this.infoDiv = document.getElementById("info-div");
@@ -92,15 +94,23 @@ class Game {
         this.playerCanvas.addEventListener("mouseout", this.hideInfoDiv.bind(this))
         this.playerCTX.drawImage(playerSpritesheet , 14 , 713, 43, 55, 200, 250, 43 * 2, 55 * 2) 
         this.updatePlayerHealthBar();
+        this.updatePlayerAPBar();
     }
 
     updatePlayerHealthBar() {
         this.playerHealthBar.style.position = "absolute"
-        this.playerHealthBar.style.top = "220px";
+        this.playerHealthBar.style.top = "200px";
         this.playerHealthBar.style.left = "180px";
-        console.log(this.player.currentHealth)
         this.playerHealthBar.value = this.player.currentHealth
         this.playerHealthBar.max = this.player.maxHealth
+    }
+
+    updatePlayerAPBar() {
+        this.playerAPBar.style.position = "absolute"
+        this.playerAPBar.style.top = "220px";
+        this.playerAPBar.style.left = "180px";
+        this.playerAPBar.value = this.player.currentAP
+        this.playerAPBar.max = this.player.maxAP
     }
 
     displayPlayerInfo(event) {
