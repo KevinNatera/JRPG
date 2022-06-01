@@ -2,8 +2,8 @@ class Enemy {
     constructor() {
         this.currentHealth = 9999
         this.maxHealth = 9999
-        this.currentAP = 10
-        this.maxAP = 10
+        this.currentAP = 100
+        this.maxAP = 100
         this.attack = 80
         this.defense = 25
         this.magic = 100
@@ -27,7 +27,7 @@ class Enemy {
         if (num < 50 ) {
             return this.attackOne.bind(this)();
         } else {
-         return this.attackTwo.bind(this)(); //<-- remove parentheses for funny msg
+            return this.attackTwo.bind(this)(); //<-- remove parentheses for funny msg
         }
 
     }
@@ -39,16 +39,21 @@ class Enemy {
         if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         
         console.log(`Enemy deals ${damage} damage to player!`)
-        return damage
+        return [damage,this.player,this]
     }
 
     attackTwo() {
+        const cost = 50
+        if (this.currentAP < cost) {
+            return this.attackOne.bind(this)(); 
+        }
+        this.currentAP -= cost
+
         let damage = this.magic - this.player.magic
         if (damage < 1) damage = 1
-        console.log("check")
         if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         console.log(`Enemy deals ${damage} damage to player!`)
-        return damage
+        return [damage,this.player,this]
         //rerfactor to return player to change player stats
     }
 }

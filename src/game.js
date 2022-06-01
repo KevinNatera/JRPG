@@ -93,19 +93,15 @@ class Game {
         this.playerCanvas.addEventListener("mousemove", this.displayPlayerInfo.bind(this))
         this.playerCanvas.addEventListener("mouseout", this.hideInfoDiv.bind(this))
         this.playerCTX.drawImage(playerSpritesheet , 14 , 713, 43, 55, 200, 250, 43 * 2, 55 * 2) 
-        this.updatePlayerHealthBar();
-        this.updatePlayerAPBar();
+        this.updatePlayerBars();
     }
 
-    updatePlayerHealthBar() {
+    updatePlayerBars() {
         this.playerHealthBar.style.position = "absolute"
         this.playerHealthBar.style.top = "200px";
         this.playerHealthBar.style.left = "180px";
         this.playerHealthBar.value = this.player.currentHealth
         this.playerHealthBar.max = this.player.maxHealth
-    }
-
-    updatePlayerAPBar() {
         this.playerAPBar.style.position = "absolute"
         this.playerAPBar.style.top = "220px";
         this.playerAPBar.style.left = "180px";
@@ -113,6 +109,7 @@ class Game {
         this.playerAPBar.max = this.player.maxAP
     }
 
+   
     displayPlayerInfo(event) {
         const cursorX = event.clientX
         const cursorY = event.clientY
@@ -193,15 +190,20 @@ class Game {
         this.enemyCanvas.addEventListener("mousemove", this.displayEnemyInfo.bind(this)) 
         this.enemyCanvas.addEventListener("mouseout", this.hideInfoDiv.bind(this))
         this.enemyCTX.drawImage(enemySpritesheet , 9 , 10, 25, 31, 200, 265, 25 * 3, 31 * 3) 
-        this.updateEnemyHealthBar();
+        this.updateEnemyBars();
     }
 
-    updateEnemyHealthBar() {
+    updateEnemyBars() {
         this.enemyHealthBar.style.position = "absolute"
-        this.enemyHealthBar.style.top = "230px";
+        this.enemyHealthBar.style.top = "210px";
         this.enemyHealthBar.style.left = "570px";
         this.enemyHealthBar.value = this.enemy.currentHealth
         this.enemyHealthBar.max = this.enemy.maxHealth
+        this.enemyAPBar.style.position = "absolute"
+        this.enemyAPBar.style.top = "230px";
+        this.enemyAPBar.style.left = "570px";
+        this.enemyAPBar.value = this.enemy.currentAP
+        this.enemyAPBar.max = this.enemy.maxAP
     }
 
     displayEnemyInfo(event) {
@@ -297,7 +299,8 @@ class Game {
             let playerDamage = this.player.dealDamage(this.enemy);
             this.enemy.currentHealth -= playerDamage
             this.reportDamage("Player", playerDamage, "Enemy")
-            this.updateEnemyHealthBar();
+            this.updatePlayerBars();
+            this.updateEnemyBars();
 
             console.log(`Enemy hp: ${this.enemy.currentHealth}`)
 
@@ -349,14 +352,16 @@ class Game {
         //     this.player.defense = this.player.defense * 1.50
         // }
 
-        let enemyDamage = this.enemy.dealDamage(this.player);
-        
+        let enemyAttackResult = this.enemy.dealDamage(this.player);
+        let enemyDamage = enemyAttackResult[0]
+        this.player = enemyAttackResult[1]
+        this.enemy = enemyAttackResult[2]
 
         // cancelAnimation(playerAttackAnimationId)
             this.player.currentHealth -= enemyDamage
             this.reportDamage("Enemy", enemyDamage, "Player")
-            this.updatePlayerHealthBar();
-                            
+            this.updatePlayerBars();
+            this.updateEnemyBars();
             console.log(`Player hp: ${this.player.currentHealth}`)
 
             if (modifier === "playerDefends") {
