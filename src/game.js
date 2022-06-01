@@ -28,14 +28,6 @@ class Game {
 
         this.executeCommandListener = this.executeCommand.bind(this)
         
-        // this.totalFrames = 18;
-        // this.animationDuration = 1300;
-        // this.timePerFrame = this.animationDuration / this.totalFrames;
-        // this.timeWhenLastUpdate;
-        // this.timeFromLastUpdate;
-        // this.frameNumber = 1;
-
-
         this.warriorSpritesheet = new Image()
         this.warriorSpritesheet.src = "../assets/spritesheets/warrior_spritesheet.png"
         this.playerAttackAnimationId;
@@ -106,6 +98,7 @@ class Game {
         this.playerHealthBar.style.position = "absolute"
         this.playerHealthBar.style.top = "220px";
         this.playerHealthBar.style.left = "180px";
+        console.log(this.player.currentHealth)
         this.playerHealthBar.value = this.player.currentHealth
         this.playerHealthBar.max = this.player.maxHealth
     }
@@ -135,36 +128,36 @@ class Game {
    
     
         //TODO----------------------------------------------------------------------------------------------------------------------------
-    playerAttackAnimation() {
-            //impass reached, must refactor code into classes
+    // playerAttackAnimation() {
+    //         //impass reached, must refactor code into classes
            
-        this.currentFrame++;
+    //     this.currentFrame++;
     
-        console.log(this.currentFrame)
-            if (this.currentFrame < 100) {
-                this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this))
-            }
+    //     console.log(this.currentFrame)
+    //         if (this.currentFrame < 100) {
+    //             this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this))
+    //         }
     
-            this.currentFrame = 1
+    //         this.currentFrame = 1
     
-            let i = this.animationFrameCount
+    //         let i = this.animationFrameCount
           
-            const frameArr = [
-                [1,11,200,250],
-                [2,11,220,250]
-                // [3,11,240,250]
-            ]
-            // 408 limit, currently at 273
+    //         const frameArr = [
+    //             [1,11,200,250],
+    //             [2,11,220,250]
+    //             // [3,11,240,250]
+    //         ]
+    //         // 408 limit, currently at 273
             
-                if (i < frameArr.length) {
-                    () => { drawPlayerFrame( frameArr[i][0], frameArr[i][1], frameArr[i][2], frameArr[i][3]) }
-                //    drawPlayerFrame( frameArr[i][0], frameArr[i][1], frameArr[i][2], frameArr[i][3])
-                   this.animationFrameCount++;
-                } else {
-                    this.cancelAnimation(this.playerAttackAnimationId).bind(this)
-                }
-            this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this))
-        }
+    //             if (i < frameArr.length) {
+    //                 () => { drawPlayerFrame( frameArr[i][0], frameArr[i][1], frameArr[i][2], frameArr[i][3]) }
+    //             //    drawPlayerFrame( frameArr[i][0], frameArr[i][1], frameArr[i][2], frameArr[i][3])
+    //                this.animationFrameCount++;
+    //             } else {
+    //                 this.cancelAnimation(this.playerAttackAnimationId).bind(this)
+    //             }
+    //         this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this))
+    //     }
     
     drawPlayerFrame(x, y, canvasX, canvasY) {
         this.playerCTX.clearRect(0,0,this.playerCanvas.width,this.playerCanvas.width)
@@ -180,38 +173,7 @@ class Game {
         this.playerCTX.drawImage(this.warriorSpritesheet , spritesheetX , spritesheetY, width, height, canvasX, canvasY, scaledWidth, scaledHeight)
     }
 
-//     playerAttackAnimation() {
-    
 
-// // 'step' function will be called each time browser rerender the content
-// // we achieve that by passing 'step' as a parameter to 'requestAnimationFrame' function
-// function step(startTime) {
-//   // 'startTime' is provided by requestAnimationName function, and we can consider it as current time
-//   // first of all we calculate how much time has passed from the last time when frame was update
-//   if (!timeWhenLastUpdate) timeWhenLastUpdate = startTime;
-//   timeFromLastUpdate = startTime - timeWhenLastUpdate;
-
-//   // then we check if it is time to update the frame
-//   if (timeFromLastUpdate > timePerFrame) {
-//     // hide all frames
-//     // $('.eye-animation').css('opacity', 0);
-//     // and show the required one
-//     // $(`.eye-animation-${frameNumber}`).css('opacity', 1);
-//     // reset the last update time
-//     timeWhenLastUpdate = startTime;
-
-//     // then increase the frame number or reset it if it is the last frame
-//     if (frameNumber >= totalFrames) {
-//       frameNumber = 1;
-//     } else {
-//       frameNumber = frameNumber + 1;
-//     }        
-//   }
-
-//   requestAnimationFrame(step);
-// }
-//     }
-//    }
 
 //-------------------ENEMY--------------------------------------
     styleEnemyCanvas(enemySpritesheet) {
