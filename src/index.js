@@ -40,3 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
+
+
+
+// game.js:178 Uncaught TypeError: Failed to execute 'drawImage' on 'CanvasRenderingContext2D': The provided value is not of type '(CSSImageValue or HTMLCanvasElement or HTMLImageElement or HTMLVideoElement or ImageBitmap or OffscreenCanvas or SVGImageElement or VideoFrame)'.
+//     at Game.drawPlayerFrame (game.js:178:24)
+//     at Game.playerAttackAnimation (game.js:159:25)

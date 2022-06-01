@@ -27,7 +27,20 @@ class Game {
         this.infoDiv = document.getElementById("info-div");
 
         this.executeCommandListener = this.executeCommand.bind(this)
-     
+        
+        // this.totalFrames = 18;
+        // this.animationDuration = 1300;
+        // this.timePerFrame = this.animationDuration / this.totalFrames;
+        // this.timeWhenLastUpdate;
+        // this.timeFromLastUpdate;
+        // this.frameNumber = 1;
+
+
+        this.warriorSpritesheet = new Image()
+        this.warriorSpritesheet.src = "../assets/spritesheets/warrior_spritesheet.png"
+        this.playerAttackAnimationId;
+        this.animationFrameCount = 0
+        this.currentFrame = 1
     }
 
 //-------------------BACKGROUND---------------------------------
@@ -44,6 +57,7 @@ class Game {
     }
 
     message(text) {
+        //current char limit is 29
         this.messageDiv.innerHTML = text
     }
 
@@ -96,7 +110,7 @@ class Game {
         this.playerHealthBar.max = this.player.maxHealth
     }
 
-   displayPlayerInfo(event) {
+    displayPlayerInfo(event) {
         const cursorX = event.clientX
         const cursorY = event.clientY
         
@@ -118,55 +132,85 @@ class Game {
         }
    }
 
-//    playerAttackAnimation() {
-    // let playerAttackAnimationId;
-    //      let animationFrameCount = 0
-    //      let currentFrame = 0
-    //     //TODO----------------------------------------------------------------------------------------------------------------------------
-    //     function playerAttackAnimation() {
-    //         //impass reached, must refactor code into classes
+   
+    
+        //TODO----------------------------------------------------------------------------------------------------------------------------
+    playerAttackAnimation() {
+            //impass reached, must refactor code into classes
            
-    //         currentFrame++;
+        this.currentFrame++;
     
-    //         console.log(currentFrame)
+        console.log(this.currentFrame)
+            if (this.currentFrame < 100) {
+                this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this))
+            }
     
-    //         if (currentFrame < 100) {
-    //             playerAttackAnimationId = requestAnimationFrame(playerAttackAnimation)
-    //         }
+            this.currentFrame = 1
     
-    //         currentFrame = 0
-    
-    //         let i = animationFrameCount
+            let i = this.animationFrameCount
           
-    //         const frameArr = [
-    //             [1,11,200,250],
-    //             [2,11,220,250]
-    //             // [3,11,240,250]
-    //         ]
-    //         // 408 limit, currently at 273
+            const frameArr = [
+                [1,11,200,250],
+                [2,11,220,250]
+                // [3,11,240,250]
+            ]
+            // 408 limit, currently at 273
             
-    //             if (i < frameArr.length) {
-    //                drawPlayerFrame( frameArr[i][0], frameArr[i][1], frameArr[i][2], frameArr[i][3])
-    //                animationFrameCount++;
-    //             } else {
-    //                 cancelAnimation(playerAttackAnimationId)
-    //             }
-    //         playerAttackAnimationId = requestAnimationFrame(playerAttackAnimation)
-    //     }
+                if (i < frameArr.length) {
+                    () => { drawPlayerFrame( frameArr[i][0], frameArr[i][1], frameArr[i][2], frameArr[i][3]) }
+                //    drawPlayerFrame( frameArr[i][0], frameArr[i][1], frameArr[i][2], frameArr[i][3])
+                   this.animationFrameCount++;
+                } else {
+                    this.cancelAnimation(this.playerAttackAnimationId).bind(this)
+                }
+            this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this))
+        }
     
-    //     function drawPlayerFrame(x, y, canvasX, canvasY) {
-    //         playerCTX.clearRect(0,0,playerCanvas.width,playerCanvas.width)
+    drawPlayerFrame(x, y, canvasX, canvasY) {
+        this.playerCTX.clearRect(0,0,this.playerCanvas.width,this.playerCanvas.width)
     
-    //         const scale = 2
-    //         const width = 55
-    //         const height = 55
-    //         const scaledWidth = scale * width
-    //         const scaledHeight = scale * height
-    //         const spritesheetX = 10 + (x * 64)
-    //         const spritesheetY = 9 + (y * 64)
+        const scale = 2
+        const width = 55
+        const height = 55
+        const scaledWidth = scale * width
+        const scaledHeight = scale * height
+        const spritesheetX = 10 + (x * 64)
+        const spritesheetY = 9 + (y * 64)
+
+        this.playerCTX.drawImage(this.warriorSpritesheet , spritesheetX , spritesheetY, width, height, canvasX, canvasY, scaledWidth, scaledHeight)
+    }
+
+//     playerAttackAnimation() {
     
-    //         playerCTX.drawImage(warriorSpritesheet , spritesheetX , spritesheetY, width, height, canvasX, canvasY, scaledWidth, scaledHeight)
-    //     }
+
+// // 'step' function will be called each time browser rerender the content
+// // we achieve that by passing 'step' as a parameter to 'requestAnimationFrame' function
+// function step(startTime) {
+//   // 'startTime' is provided by requestAnimationName function, and we can consider it as current time
+//   // first of all we calculate how much time has passed from the last time when frame was update
+//   if (!timeWhenLastUpdate) timeWhenLastUpdate = startTime;
+//   timeFromLastUpdate = startTime - timeWhenLastUpdate;
+
+//   // then we check if it is time to update the frame
+//   if (timeFromLastUpdate > timePerFrame) {
+//     // hide all frames
+//     // $('.eye-animation').css('opacity', 0);
+//     // and show the required one
+//     // $(`.eye-animation-${frameNumber}`).css('opacity', 1);
+//     // reset the last update time
+//     timeWhenLastUpdate = startTime;
+
+//     // then increase the frame number or reset it if it is the last frame
+//     if (frameNumber >= totalFrames) {
+//       frameNumber = 1;
+//     } else {
+//       frameNumber = frameNumber + 1;
+//     }        
+//   }
+
+//   requestAnimationFrame(step);
+// }
+//     }
 //    }
 
 //-------------------ENEMY--------------------------------------
@@ -296,12 +340,12 @@ class Game {
             
         } else if (this.isPointInsideRect(cursorX,cursorY, 287, buttonY, buttonSize,buttonSize)) { //skills
         
-            // playerAttackAnimationId = requestAnimationFrame(playerAttackAnimation); //-----------------------------TESTING
+            this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this)); 
             console.log("ABILITIES")
                     
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
            
-            // cancelAnimation(playerAttackAnimationId)
+            cancelAnimation(this.playerAttackAnimationId)
             console.log("ITEMS")
         
         } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //defend
