@@ -249,7 +249,7 @@ class Game {
         if (this.isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //attack
             
              this.repositionInfoDiv(cursorX, cursorY)
-             this.fillInfo(`Deal ${this.player.attack - this.enemy.defense} damage <br> to the enemy.`)
+             this.fillInfo(`Deal ~${this.player.attack - this.enemy.defense} damage <br> to the enemy.`)
 
 
         } else if (this.isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //skills

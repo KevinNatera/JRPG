@@ -1,6 +1,6 @@
 class Enemy {
     constructor() {
-        this.currentHealth = 230
+        this.currentHealth = 230000
         this.maxHealth = 230
         this.attack = 80
         this.defense = 25
@@ -22,7 +22,7 @@ class Enemy {
     dealDamage(player) {
         this.player = player
         let num = Math.floor(Math.random() * 100);
-        console.log(num)
+        console.log(`Random enemy number: ${num}`)
         if (num < 50 ) {
             return this.attackOne.bind(this)();
         } else {

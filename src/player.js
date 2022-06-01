@@ -1,6 +1,6 @@
 class Player {
     constructor() {
-        this.currentHealth = 200
+        this.currentHealth = 275
         this.maxHealth = 300
         this.attack = 100
         this.defense = 50
@@ -9,7 +9,11 @@ class Player {
     }
 
     dealDamage(enemy) {
-        let damage = this.attack - enemy.defense 
+        let num1 = Math.floor(Math.random() * 50) 
+        let num2 = Math.floor(Math.random() * 50);
+        console.log(`Random + player number: ${num1}`)
+        console.log(`Random - player number: ${num2}`)
+        let damage = this.attack + num1 - num2 - enemy.defense 
         if (damage < 1) damage = 1
         if (enemy.currentHealth - damage < 0) damage = enemy.currentHealth
         
