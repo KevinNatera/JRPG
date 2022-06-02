@@ -39,6 +39,8 @@ class Enemy {
         if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         
         console.log(`Enemy deals ${damage} damage to player!`)
+        let sound = document.getElementById("magic-attack")
+        sound.play()
         return [damage,this.player,this]
     }
 
@@ -53,6 +55,8 @@ class Enemy {
         if (damage < 1) damage = 1
         if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         console.log(`Enemy deals ${damage} damage to player!`)
+        let sound = document.getElementById("magic-critical-hit")
+        sound.play()
         return [damage,this.player,this]
         //rerfactor to return player to change player stats
     }

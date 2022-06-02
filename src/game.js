@@ -32,9 +32,9 @@ class Game {
         
         this.warriorSpritesheet = new Image()
         this.warriorSpritesheet.src = "../assets/spritesheets/warrior_spritesheet.png"
-        this.playerAttackAnimationId;
-        this.animationFrameCount = 0
-        this.currentFrame = 1
+        // this.playerAttackAnimationId;
+        // this.animationFrameCount = 0
+        // this.currentFrame = 1
     }
 
 //-------------------BACKGROUND---------------------------------
@@ -295,7 +295,7 @@ class Game {
         if (this.isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //attack
             //Player Attack
             this.menuCanvas.removeEventListener("click",this.executeCommandListener )
-
+            
             let playerDamage = this.player.dealDamage(this.enemy);
             this.enemy.currentHealth -= playerDamage
             this.reportDamage("Player", playerDamage, "Enemy")
@@ -304,6 +304,8 @@ class Game {
 
             console.log(`Enemy hp: ${this.enemy.currentHealth}`)
 
+           let sound = document.getElementById("physical-critical-hit")
+           sound.play()
             //--------Enemy is defeated
             if (this.enemy.currentHealth <= 0) {
                 setTimeout( function() { this.reportDefeated("Enemy") }.bind(this) , 1000)
