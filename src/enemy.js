@@ -34,7 +34,10 @@ class Enemy {
     
 
     attackOne() {
-        let damage = this.attack - this.player.defense 
+        let num1 = Math.floor(Math.random() * 50);
+        let num2 = Math.floor(Math.random() * 50);
+
+        let damage = this.attack + num1 - num2 - this.player.defense 
         if (damage < 1) damage = 1
         if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         
@@ -50,15 +53,16 @@ class Enemy {
             return this.attackOne.bind(this)(); 
         }
         this.currentAP -= cost
+        let num1 = Math.floor(Math.random() * 50);
+        let num2 = Math.floor(Math.random() * 50);
 
-        let damage = this.magic - this.player.magic
+        let damage = this.magic + num1 - num2 - this.player.magic
         if (damage < 1) damage = 1
         if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         console.log(`Enemy deals ${damage} damage to player!`)
         let sound = document.getElementById("magic-critical-hit")
         sound.play()
         return [damage,this.player,this]
-        //rerfactor to return player to change player stats
     }
 }
 

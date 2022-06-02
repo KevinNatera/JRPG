@@ -328,8 +328,9 @@ class Game {
             
             this.menuCanvas.removeEventListener("click", this.executeCommandListener)
             this.player.defense = this.player.defense * 1.50
+            this.player.magic = this.player.magic * 1.50
             this.message("Defense boosted for one turn!");
-            setTimeout(this.enemyTurn.bind(this,"playerDefends"),1000)
+            setTimeout(this.enemyTurn.bind(this,"playerDefends"), 1000)
         
         } else {
             //invalid click sound
@@ -368,14 +369,14 @@ class Game {
 
             if (modifier === "playerDefends") {
                 this.player.defense = this.player.defense / 1.50
+                this.player.magic = this.player.magic / 1.50
             }
                         
             //------Player is defeated
             if (this.player.currentHealth <= 0) {
                 setTimeout( function() { this.reportDefeated("Player") }.bind(this) , 1000)
             } else {
-             //add setTimeout to prevent attack spam
-            this.menuCanvas.addEventListener("click", this.executeCommandListener)
+                setTimeout( function() { this.menuCanvas.addEventListener("click", this.executeCommandListener) }.bind(this),1000)
             }
  
     }
