@@ -1,12 +1,12 @@
 class Player {
     constructor() {
-        this.currentHealth = 100
+        this.currentHealth = 300
         this.maxHealth = 300
         this.currentAP = 100
-        this.maxAP = 200
+        this.maxAP = 100
         this.attack = 100
         this.defense = 50
-        this.magic = 10
+        this.magic = 30
     }
 
     dealDamage(enemy) {

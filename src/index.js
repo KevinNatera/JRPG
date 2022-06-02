@@ -10,25 +10,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //eventually refactor these
     const backgroundImage = new Image()
-    backgroundImage.src = "/untitled_JRPG/assets/general_assets/background.png"
+    backgroundImage.src = "./assets/general_assets/background.png"
     backgroundImage.onload = function() {
         g.styleBackground(backgroundImage)
     }
 
      const warriorSpritesheet = new Image()
-        warriorSpritesheet.src = "/untitled_JRPG/assets/spritesheets/warrior_spritesheet.png"
+        warriorSpritesheet.src = "./assets/spritesheets/warrior_spritesheet.png"
         warriorSpritesheet.onload = function() {
             g.stylePlayerCanvas(warriorSpritesheet);
     }
 
     const enemyMageSprite = new Image()
-        enemyMageSprite.src = "/untitled_JRPG/assets/spritesheets/mage_spritesheet.png"
+        enemyMageSprite.src = "./assets/spritesheets/mage_spritesheet.png"
         enemyMageSprite.onload = function() {
             g.styleEnemyCanvas(enemyMageSprite);
     }   
 
     const basicIconSpritesheet = new Image()
-        basicIconSpritesheet.src = "/untitled_JRPG/assets/spritesheets/basic_icon_spritesheet.png"
+        basicIconSpritesheet.src = "./assets/spritesheets/basic_icon_spritesheet.png"
         basicIconSpritesheet.onload = function() {
             g.styleDefaultMenu(basicIconSpritesheet);
             g.styleMessageDiv();
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             g.basicIconSpritesheet = basicIconSpritesheet
             
             let healImage = new Image() 
-            healImage.src = "/untitled_JRPG/assets/ability_icons/heal.png"
+            healImage.src = "./assets/ability_icons/heal.png"
             g.healImage = healImage
         }
     

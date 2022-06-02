@@ -35,7 +35,7 @@ class Game {
         this.displayAbilityInfoListener = this.displayAbilityInfo.bind(this)
 
         this.warriorSpritesheet = new Image()
-        this.warriorSpritesheet.src = "../assets/spritesheets/warrior_spritesheet.png"
+        this.warriorSpritesheet.src = "./assets/spritesheets/warrior_spritesheet.png"
         // this.playerAttackAnimationId;
         // this.animationFrameCount = 0
         // this.currentFrame = 1    

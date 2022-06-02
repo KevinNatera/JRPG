@@ -1,12 +1,12 @@
 class Enemy {
     constructor() {
-        this.currentHealth = 9
-        this.maxHealth = 9999
-        this.currentAP = 100
-        this.maxAP = 100
+        this.currentHealth = 500
+        this.maxHealth = 500
+        this.currentAP = 150
+        this.maxAP = 150
         this.attack = 80
         this.defense = 25
-        this.magic = 100
+        this.magic = 120
         this.player = 0
     }
 
