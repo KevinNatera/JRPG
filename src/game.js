@@ -250,9 +250,13 @@ class Game {
     }
 
     styleAbilityMenu() {
+        this.hideInfoDiv();
+        this.menuCTX.clearRect(0,0,this.menuCanvas.width, this.menuCanvas.height)
+        this.menuCTX.fillRect(0, 0,this.menuCanvas.width, this.menuCanvas.height)
         this.menuCanvas.removeEventListener("click", this.executeCommandListener)
-        this.menuCanvas.removeEventListener("click", this.displayMenuInfo)
+        this.menuCanvas.removeEventListener("mousemove", this.displayMenuInfoListener)
 
+        this.menuCTX.drawImage(this.basicIconSpritesheet, 1039, 0, 514, 514, 25, 25, 100, 100)
     }
 
    
@@ -322,14 +326,13 @@ class Game {
             }
             
         } else if (this.isPointInsideRect(cursorX,cursorY, 287, buttonY, buttonSize,buttonSize)) { //skills
-        
-            // this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this)); 
-
+            
+            this.styleAbilityMenu()
             console.log("ABILITIES")
                     
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
            
-            // cancelAnimation(this.playerAttackAnimationId)
+   
             console.log("ITEMS")
         
         } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //defend
