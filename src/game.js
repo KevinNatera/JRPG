@@ -354,7 +354,7 @@ class Game {
             //--------Enemy is defeated
             if (this.enemy.currentHealth <= 0) {
                 let sound = document.getElementById("victory")
-                sound.volume = 0.5
+                sound.volume = 0.7
                 this.pauseSound("battle-theme")
                 setTimeout( function() { this.reportDefeated("Enemy") }.bind(this) , 1000)
                 setTimeout( () => { sound.play() } , 500)
@@ -403,7 +403,7 @@ class Game {
         } else if (this.isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //heal
             
             this.repositionInfoDiv(cursorX, cursorY)
-            this.fillInfo(`Recover ~${this.player.magic + 30} health <br> Costs 30 AP.`)
+            this.fillInfo(`Recover ~${this.player.magic + 10} health <br> Costs 30 AP.`)
 
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skill 3
     
@@ -506,7 +506,7 @@ class Game {
             //------Player is defeated
         if (this.player.currentHealth <= 0) {
             let sound = document.getElementById("game-over")
-            sound.volume = 0.5
+            sound.volume = 0.7
             this.pauseSound("battle-theme")
             setTimeout( function() { this.reportDefeated("Player") }.bind(this) , 1000)
             setTimeout( () => { sound.play() } , 500)
