@@ -6,6 +6,9 @@ const EnemyClass = require("./enemy.js");
 class Game {
 
     constructor() {
+        this.splashDiv = document.getElementById("splash");
+        this.splashListener = this.removeSplash.bind(this)
+
         this.backgroundCanvas = document.getElementById("battle-scene");
         this.backgroundCTX = this.backgroundCanvas.getContext("2d");
 
@@ -40,6 +43,21 @@ class Game {
         // this.animationFrameCount = 0
         // this.currentFrame = 1    
     }
+
+//-------------------SPLASH---------------------------------
+    styleSplash() {
+        this.splashDiv.addEventListener("click",this.splashListener)
+    }
+
+    removeSplash() {
+        this.splashDiv.classList.add("clicked")
+        this.splashDiv.removeEventListener("click",this.splashListener)
+        setTimeout( ()=> { this.splashDiv.remove();  }, 1000 )
+        this.playSound("battle-theme",0.5)
+    }
+
+
+
 
 //-------------------BACKGROUND---------------------------------
     styleBackground(backgroundImage) {

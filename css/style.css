@@ -65,8 +65,31 @@
 }
 
 
-
 #player-AP-bar::-webkit-progress-bar, #enemy-AP-bar::-webkit-progress-bar {
     background-color: black;
     border: solid 3px black;
+}
+
+#splash {
+    background-color: blue;
+    position: absolute;
+    z-index: 12;
+}
+
+#splash > p {
+    font-size: 30px;
+    text-align: center;
+    color: white
+}
+
+#splash > p::first-line {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+#splash.clicked{
+    visibility: visible;
+    opacity: 0;
+    filter: blur(30px);
+    transition: visbility 0s 2s, opacity 1s linear;
 }

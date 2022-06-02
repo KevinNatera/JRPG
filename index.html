@@ -5,22 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="assets/general_assets/favicon_io/">
+    <link rel="icon" type="image/x-icon" href="assets/general_assets/favicon.ico">
     <title> JRPG </title>
     <script type="text/javascript" src="dist/main.js" charset="utf-8" defer></script>
 </head>
 <body> 
-        <canvas id = "battle-scene" width="800" height="600"> </canvas>
-            <canvas id = "player-canvas" width="400" height="430"> </canvas>
-            <canvas id = "enemy-canvas" width="400" height="430"> </canvas>
-            <canvas id = "menu-canvas" width="600" height="150"> </canvas>
+            <div id="splash" style ="display:table-cell;width:810px;height:610px"> 
+                <p>  Welcome to a prototype JRPG!
+                        <br>
+                        <br>
+                    Control the battle music with the player at the bottom left.
+                        <br>
+                        <br>
+                    Hover over buttons to see what actions are possible.
+                        <br>
+                        <br>
+                    Click on command buttons to execute actions.
+                        <br>
+                        <br>
+                    Bring the enemy's health down to 0 to win!
+                        <br>
+                        <br> 
+                    The enemy will use 2 different types of attacks, one stronger than the other.
+                        <br>
+                        <br>
+                    With good strategy, intuition and luck, you can  be victorious!
+                        <br>
+                        <br>
+                    Click to begin playing.
+                </p>
+                
+            </div>
+            <canvas id="battle-scene" width="800" height="600"> </canvas>
+            <canvas id="player-canvas" width="400" height="430"> </canvas>
+            <canvas id="enemy-canvas" width="400" height="430"> </canvas>
+            <canvas id="menu-canvas" width="600" height="150"> </canvas>
             <progress id="player-health-bar" value="100" max="100"></progress>
             <progress id="enemy-health-bar" value="100" max="100"></progress>
             <progress id="player-AP-bar" value="100" max="100"></progress>
             <progress id="enemy-AP-bar" value="100" max="100"></progress>
-            <div id = "message-div" style ="display:table-cell;width:600px;height:50px"> 
+            <div id="message-div" style ="display:table-cell;width:600px;height:50px"> 
             </div>
-            <div id = "info-div" style ="display:table-cell;width:250px;height:120px"> 
+            <div id="info-div" style ="display:table-cell;width:250px;height:120px"> 
             </div>
 
     <audio id="battle-theme" type="audio/mpeg" controls loop>   
