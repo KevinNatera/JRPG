@@ -40,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
             g.healImage = healImage
         }
     
+        let battleTheme = document.getElementById("battle-theme")
+        battleTheme.volume = 0.5
 });
 
 

@@ -42,8 +42,8 @@ class Enemy {
         if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         
         console.log(`Enemy deals ${damage} damage to player!`)
-        let sound = document.getElementById("magic-attack")
-        sound.play()
+        
+        this.playSound("magic-attack")
         return [damage,this.player,this]
     }
 
@@ -60,9 +60,16 @@ class Enemy {
         if (damage < 1) damage = 1
         if (this.player.currentHealth - damage < 0) damage = this.player.currentHealth
         console.log(`Enemy deals ${damage} damage to player!`)
-        let sound = document.getElementById("magic-critical-hit")
-        sound.play()
+        
+        this.playSound("magic-critical-hit")
         return [damage,this.player,this]
+    }
+
+
+    playSound(soundName,volume = 1) {
+        let sound = document.getElementById(soundName)
+        sound.volume = volume
+        sound.play()
     }
 }
 

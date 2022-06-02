@@ -336,6 +336,7 @@ class Game {
             //--------Enemy is defeated
             if (this.enemy.currentHealth <= 0) {
                 let sound = document.getElementById("victory")
+                sound.volume = 0.5
                 setTimeout( function() { this.reportDefeated("Enemy") }.bind(this) , 1000)
                 setTimeout( () => { sound.play() } , 500)
             } else {
@@ -350,7 +351,7 @@ class Game {
                     
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
            
-   
+            this.playSound("cancel",0.8)
             console.log("ITEMS")
         
         } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //defend
@@ -359,12 +360,11 @@ class Game {
             this.player.defense = this.player.defense * 1.50
             this.player.magic = this.player.magic * 1.50
             this.message("Defense boosted for one turn!");
-            let sound = document.getElementById("defense")
-            sound.play()
+            this.playSound("defense",0.2)
             setTimeout(this.enemyTurn.bind(this,"playerDefends"), 1000)
         
         } else {
-            //invalid click sound
+
         }
    
     }
@@ -417,17 +417,18 @@ class Game {
                 
             this.styleDefaultMenu(this.basicIconSpritesheet)
             this.menuCanvas.removeEventListener("click", this.executeCommandListener)
+            
             let result = this.player.heal()
-            console.log(result) 
             this.player = result[0]
+
            if (result[1] === "Not enough AP!") {
                this.message(result[1])
                this.updatePlayerBars();
-               this.menuCanvas.addEventListener("click", this.executeCommandListener)
+               setTimeout( () => { this.menuCanvas.addEventListener("click", this.executeCommandListener) }, 1200)
            } else {
                this.message(result[1])
                this.updatePlayerBars();
-            setTimeout(this.enemyTurn.bind(this),1000)
+               setTimeout(this.enemyTurn.bind(this),1000)
            }
                 
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skill 2
@@ -447,6 +448,12 @@ class Game {
     isPointInsideRect(pointX,pointY,rectX,rectY,rectWidth,rectHeight){
         return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
             (rectY <= pointY) && (rectY + rectHeight >= pointY);
+    }
+
+    playSound(soundName,volume = 1.0) {
+        let sound = document.getElementById(soundName)
+        sound.volume = volume
+        sound.play()
     }
 
     cancelAnimation(animationId) {
@@ -474,7 +481,7 @@ class Game {
             //------Player is defeated
         if (this.player.currentHealth <= 0) {
             let sound = document.getElementById("game-over")
-            // sound.play()
+            sound.volume = 0.5
             setTimeout( function() { this.reportDefeated("Player") }.bind(this) , 1000)
             setTimeout( () => { sound.play() } , 500)
         } else {

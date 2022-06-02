@@ -2,7 +2,7 @@ class Player {
     constructor() {
         this.currentHealth = 100
         this.maxHealth = 300
-        this.currentAP = 200
+        this.currentAP = 100
         this.maxAP = 200
         this.attack = 100
         this.defense = 50
@@ -19,8 +19,7 @@ class Player {
         
         console.log(`Player deals ${damage} damage to enemy!`)
 
-        let sound = document.getElementById("physical-critical-hit")
-        sound.play()
+        this.playSound("physical-critical-hit",0.5)
         return damage
     }
 
@@ -29,6 +28,7 @@ class Player {
         //develop ability messages
         const cost = 30
         if (this.currentAP < cost) {
+            this.playSound("cancel",0.8)
             return [this,"Not enough AP!"]
         }
 
@@ -41,10 +41,16 @@ class Player {
         if (this.currentHealth > this.maxHealth) {
             this.currentHealth = this.maxHealth
         }
-
+        this.playSound("heal")
         return [this,`Player recovered ${healAmount} health!` ]
     }
     
+
+    playSound(soundName, volume = 1.0) {
+        let sound = document.getElementById(soundName)
+        sound.volume = volume
+        sound.play()
+    }
 
 
 }
