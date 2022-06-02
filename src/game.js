@@ -238,10 +238,13 @@ class Game {
         this.menuCanvas.style.top = "450px";
         this.menuCanvas.style.left= "110px";
         this.menuCTX.fillStyle = "blue"
-        this.menuCTX.fillRect(0, 0,this.menuCanvas.width, this.menuCanvas.height )
+        this.menuCTX.fillRect(0, 0,this.menuCanvas.width, this.menuCanvas.height)
+        this.menuCanvas.removeEventListener("mousemove",this.displayAbilityInfoListener)
+        this.menuCanvas.removeEventListener("click",this.executeAbilityListener)
         this.menuCanvas.addEventListener("mousemove", this.displayMenuInfoListener)
         this.menuCanvas.addEventListener("mouseout", this.hideInfoDiv.bind(this))
         this.menuCanvas.addEventListener("click", this.executeCommandListener)
+        
 
         let buttonSize = 514
         let offset = 519
@@ -256,13 +259,22 @@ class Game {
         this.hideInfoDiv();
         this.menuCTX.clearRect(0,0,this.menuCanvas.width, this.menuCanvas.height)
         this.menuCTX.fillRect(0,0,this.menuCanvas.width, this.menuCanvas.height)
-        this.menuCanvas.removeEventListener("click", this.executeCommandListener)
-        this.menuCanvas.removeEventListener("mousemove", this.displayMenuInfoListener)
+        this.removeMenuListeners();
         this.menuCanvas.addEventListener("click",this.executeAbilityListener)
         this.menuCanvas.addEventListener("mousemove",this.displayAbilityInfoListener)
 
         this.menuCTX.drawImage(this.basicIconSpritesheet, 1039, 0, 514, 514, 475, 25, 100, 100)  //back to main menu
         this.menuCTX.drawImage(this.healImage, 0, 0, 512, 509, 175, 25, 100, 100) //heal Icon
+    }
+
+    addMenuListeners() {
+        this.menuCanvas.addEventListener("click", this.executeCommandListener)
+        this.menuCanvas.addEventListener("mousemove", this.displayMenuInfoListener)
+    }
+
+    removeMenuListeners() {
+        this.menuCanvas.removeEventListener("click", this.executeCommandListener)
+        this.menuCanvas.removeEventListener("mousemove", this.displayMenuInfoListener)
     }
 
    
@@ -283,7 +295,7 @@ class Game {
         } else if (this.isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //skills
             
             this.repositionInfoDiv(cursorX, cursorY)
-            this.fillInfo("Use special abilities <br> (If you HAD any!) <br> These typically cost Ability Points. (AP)")
+            this.fillInfo("Use special abilities <br> These typically cost Ability Points. (AP)")
 
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
     
@@ -334,7 +346,7 @@ class Game {
         } else if (this.isPointInsideRect(cursorX,cursorY, 287, buttonY, buttonSize,buttonSize)) { //skills
             
             this.styleAbilityMenu()
-            console.log("ABILITIES")
+
                     
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
            
@@ -372,7 +384,7 @@ class Game {
         } else if (this.isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //heal
             
             this.repositionInfoDiv(cursorX, cursorY)
-            this.fillInfo(`Recover ~${this.player.magic * 3} health <br> Costs 30 AP.`)
+            this.fillInfo(`Recover ~${this.player.magic + 15} health <br> Costs 30 AP.`)
 
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skill 3
     
@@ -399,19 +411,31 @@ class Game {
         
         if (this.isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //skill 1
             
-            
+           
             
         } else if (this.isPointInsideRect(cursorX,cursorY, 287, buttonY, buttonSize,buttonSize)) { //heal
-            
-            
-                    
+                
+            this.styleDefaultMenu(this.basicIconSpritesheet)
+            this.menuCanvas.removeEventListener("click", this.executeCommandListener)
+            let result = this.player.heal()
+            console.log(result) 
+            this.player = result[0]
+           if (result[1] === "Not enough AP!") {
+               this.message(result[1])
+               this.updatePlayerBars();
+               this.menuCanvas.addEventListener("click", this.executeCommandListener)
+           } else {
+               this.message(result[1])
+               this.updatePlayerBars();
+            setTimeout(this.enemyTurn.bind(this),1000)
+           }
+                
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skill 2
            
-   
         
         } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //return to main command menu
             
-        
+            this.styleDefaultMenu(this.basicIconSpritesheet)
         
         } else {
             //invalid click sound

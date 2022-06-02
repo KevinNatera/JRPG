@@ -1,9 +1,9 @@
 class Player {
     constructor() {
-        this.currentHealth = 1
+        this.currentHealth = 100
         this.maxHealth = 300
-        this.currentAP = 50
-        this.maxAP = 100
+        this.currentAP = 200
+        this.maxAP = 200
         this.attack = 100
         this.defense = 50
         this.magic = 10
@@ -25,7 +25,25 @@ class Player {
     }
 
     
+    heal() {
+        //develop ability messages
+        const cost = 30
+        if (this.currentAP < cost) {
+            return [this,"Not enough AP!"]
+        }
 
+        this.currentAP -= cost
+        let num1 = Math.floor(Math.random() * 30); 
+        let num2 = Math.floor(Math.random() * 10);
+
+        let healAmount = this.magic + num1 - num2
+        this.currentHealth += healAmount
+        if (this.currentHealth > this.maxHealth) {
+            this.currentHealth = this.maxHealth
+        }
+
+        return [this,`Player recovered ${healAmount} health!` ]
+    }
     
 
 
