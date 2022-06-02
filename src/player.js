@@ -1,7 +1,7 @@
 class Player {
     constructor() {
-        this.currentHealth = 300
-        this.maxHealth = 300
+        this.currentHealth = 400
+        this.maxHealth = 400
         this.currentAP = 100
         this.maxAP = 100
         this.attack = 100
@@ -30,6 +30,9 @@ class Player {
         if (this.currentAP < cost) {
             this.playSound("cancel",0.9)
             return [this,"Not enough AP!"]
+        } else if (this.currentHealth === this.maxHealth) {
+            this.playSound("cancel",0.9)
+            return [this,"Health is already full!"]
         }
 
         this.currentAP -= cost

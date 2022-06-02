@@ -422,7 +422,7 @@ class Game {
             let result = this.player.heal()
             this.player = result[0]
 
-           if (result[1] === "Not enough AP!") {
+           if (result[1] === "Not enough AP!" || result[1] === "Health is already full!") {
                this.message(result[1])
                this.updatePlayerBars();
                setTimeout( () => { this.menuCanvas.addEventListener("click", this.executeCommandListener) }, 1200)
