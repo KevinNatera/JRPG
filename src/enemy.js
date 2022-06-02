@@ -1,6 +1,6 @@
 class Enemy {
     constructor() {
-        this.currentHealth = 9999
+        this.currentHealth = 9
         this.maxHealth = 9999
         this.currentAP = 100
         this.maxAP = 100

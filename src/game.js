@@ -29,12 +29,13 @@ class Game {
         this.infoDiv = document.getElementById("info-div");
 
         this.executeCommandListener = this.executeCommand.bind(this)
-        
+        this.displayMenuInfoListener = this.displayMenuInfo.bind(this)
+
         this.warriorSpritesheet = new Image()
         this.warriorSpritesheet.src = "../assets/spritesheets/warrior_spritesheet.png"
         // this.playerAttackAnimationId;
         // this.animationFrameCount = 0
-        // this.currentFrame = 1
+        // this.currentFrame = 1    
     }
 
 //-------------------BACKGROUND---------------------------------
@@ -235,7 +236,7 @@ class Game {
         this.menuCanvas.style.left= "110px";
         this.menuCTX.fillStyle = "blue"
         this.menuCTX.fillRect(0, 0,this.menuCanvas.width, this.menuCanvas.height )
-        this.menuCanvas.addEventListener("mousemove", this.displayMenuInfo.bind(this))
+        this.menuCanvas.addEventListener("mousemove", this.displayMenuInfoListener)
         this.menuCanvas.addEventListener("mouseout", this.hideInfoDiv.bind(this))
         this.menuCanvas.addEventListener("click", this.executeCommandListener)
 
@@ -246,6 +247,12 @@ class Game {
         this.menuCTX.drawImage(basicIconSpritesheet, 0, 0, buttonSize, buttonSize, 175, 25, 100, 100) //skill button
         this.menuCTX.drawImage(basicIconSpritesheet, offset, offset, buttonSize, buttonSize, 325, 25, 100, 100) //items button
         this.menuCTX.drawImage(basicIconSpritesheet, 0, offset, buttonSize, buttonSize, 475, 25, 100, 100) //defend button
+    }
+
+    styleAbilityMenu() {
+        this.menuCanvas.removeEventListener("click", this.executeCommandListener)
+        this.menuCanvas.removeEventListener("click", this.displayMenuInfo)
+
     }
 
    
@@ -306,7 +313,9 @@ class Game {
 
             //--------Enemy is defeated
             if (this.enemy.currentHealth <= 0) {
+                let sound = document.getElementById("victory")
                 setTimeout( function() { this.reportDefeated("Enemy") }.bind(this) , 1000)
+                setTimeout( () => { sound.play() } , 500)
             } else {
             //------Enemy Attack--------------------------
                 setTimeout(this.enemyTurn.bind(this),1000)
@@ -314,12 +323,13 @@ class Game {
             
         } else if (this.isPointInsideRect(cursorX,cursorY, 287, buttonY, buttonSize,buttonSize)) { //skills
         
-            this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this)); 
+            // this.playerAttackAnimationId = requestAnimationFrame(this.playerAttackAnimation.bind(this)); 
+
             console.log("ABILITIES")
                     
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
            
-            cancelAnimation(this.playerAttackAnimationId)
+            // cancelAnimation(this.playerAttackAnimationId)
             console.log("ITEMS")
         
         } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //defend
@@ -368,7 +378,10 @@ class Game {
                         
             //------Player is defeated
         if (this.player.currentHealth <= 0) {
+            let sound = document.getElementById("game-over")
+            // sound.play()
             setTimeout( function() { this.reportDefeated("Player") }.bind(this) , 1000)
+            setTimeout( () => { sound.play() } , 500)
         } else {
             setTimeout( function() { this.menuCanvas.addEventListener("click", this.executeCommandListener) }.bind(this),1000)
         }

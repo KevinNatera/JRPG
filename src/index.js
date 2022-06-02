@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             g.styleDefaultMenu(basicIconSpritesheet);
             g.styleMessageDiv();
             g.styleInfoDiv();
+            g.basicIconSpritesheet = basicIconSpritesheet
         }
     
 });
