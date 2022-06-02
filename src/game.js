@@ -256,7 +256,8 @@ class Game {
         this.menuCanvas.removeEventListener("click", this.executeCommandListener)
         this.menuCanvas.removeEventListener("mousemove", this.displayMenuInfoListener)
 
-        this.menuCTX.drawImage(this.basicIconSpritesheet, 1039, 0, 514, 514, 25, 25, 100, 100)
+        this.menuCTX.drawImage(this.basicIconSpritesheet, 1039, 0, 514, 514, 25, 25, 100, 100)  //back to main menu
+        this.menuCTX.drawImage(this.healImage, 0, 0, 512, 509, 175, 25, 100, 100) //heal Icon
     }
 
    

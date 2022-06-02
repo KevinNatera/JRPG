@@ -34,6 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
             g.styleMessageDiv();
             g.styleInfoDiv();
             g.basicIconSpritesheet = basicIconSpritesheet
+            
+            let healImage = new Image() 
+            healImage.src = "../assets/ability_icons/heal.png"
+            g.healImage = healImage
         }
     
 });
