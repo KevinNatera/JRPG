@@ -28,13 +28,13 @@ class Player {
         //develop ability messages
         const cost = 30
         if (this.currentAP < cost) {
-            this.playSound("cancel",0.8)
+            this.playSound("cancel",0.9)
             return [this,"Not enough AP!"]
         }
 
         this.currentAP -= cost
-        let num1 = Math.floor(Math.random() * 30); 
-        let num2 = Math.floor(Math.random() * 10);
+        let num1 = Math.floor(Math.random() * 50); 
+        let num2 = Math.floor(Math.random() * 20);
 
         let healAmount = this.magic + num1 - num2
         this.currentHealth += healAmount
