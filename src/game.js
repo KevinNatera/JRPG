@@ -31,6 +31,9 @@ class Game {
         this.executeCommandListener = this.executeCommand.bind(this)
         this.displayMenuInfoListener = this.displayMenuInfo.bind(this)
 
+        this.executeAbilityListener = this.executeAbility.bind(this)
+        this.displayAbilityInfoListener = this.displayAbilityInfo.bind(this)
+
         this.warriorSpritesheet = new Image()
         this.warriorSpritesheet.src = "../assets/spritesheets/warrior_spritesheet.png"
         // this.playerAttackAnimationId;
@@ -252,11 +255,13 @@ class Game {
     styleAbilityMenu() {
         this.hideInfoDiv();
         this.menuCTX.clearRect(0,0,this.menuCanvas.width, this.menuCanvas.height)
-        this.menuCTX.fillRect(0, 0,this.menuCanvas.width, this.menuCanvas.height)
+        this.menuCTX.fillRect(0,0,this.menuCanvas.width, this.menuCanvas.height)
         this.menuCanvas.removeEventListener("click", this.executeCommandListener)
         this.menuCanvas.removeEventListener("mousemove", this.displayMenuInfoListener)
+        this.menuCanvas.addEventListener("click",this.executeAbilityListener)
+        this.menuCanvas.addEventListener("mousemove",this.displayAbilityInfoListener)
 
-        this.menuCTX.drawImage(this.basicIconSpritesheet, 1039, 0, 514, 514, 25, 25, 100, 100)  //back to main menu
+        this.menuCTX.drawImage(this.basicIconSpritesheet, 1039, 0, 514, 514, 475, 25, 100, 100)  //back to main menu
         this.menuCTX.drawImage(this.healImage, 0, 0, 512, 509, 175, 25, 100, 100) //heal Icon
     }
 
@@ -278,7 +283,7 @@ class Game {
         } else if (this.isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //skills
             
             this.repositionInfoDiv(cursorX, cursorY)
-            this.fillInfo("Use special abilities. <br> (If you HAD any!) <br> These typically cost Ability Points. (AP)")
+            this.fillInfo("Use special abilities <br> (If you HAD any!) <br> These typically cost Ability Points. (AP)")
 
         } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
     
@@ -345,6 +350,68 @@ class Game {
             let sound = document.getElementById("defense")
             sound.play()
             setTimeout(this.enemyTurn.bind(this,"playerDefends"), 1000)
+        
+        } else {
+            //invalid click sound
+        }
+   
+    }
+//-----------------------ABILITY MENU----------------------------
+    displayAbilityInfo(event) {
+        const cursorX = event.clientX
+         const cursorY = event.clientY
+         const buttonSize = 100
+         const buttonY = 478
+
+
+        if (this.isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //skill 1
+            
+            // this.repositionInfoDiv(cursorX, cursorY)
+            // this.fillInfo("skill1")
+
+        } else if (this.isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //heal
+            
+            this.repositionInfoDiv(cursorX, cursorY)
+            this.fillInfo(`Recover ~${this.player.magic * 3} health <br> Costs 30 AP.`)
+
+        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skill 3
+    
+            // this.repositionInfoDiv(cursorX, cursorY)
+            // this.fillInfo("skill3")
+            
+        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //return to main command menu
+            
+            this.repositionInfoDiv(cursorX, cursorY)
+            this.fillInfo("Go back <br> to the main command menu.")
+
+        } else {
+            this.hideInfoDiv();
+        }
+        
+    }
+
+    executeAbility(event) {
+        const cursorX = event.clientX
+        const cursorY = event.clientY
+        const buttonSize = 100
+        const buttonY = 480
+        
+        
+        if (this.isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //skill 1
+            
+            
+            
+        } else if (this.isPointInsideRect(cursorX,cursorY, 287, buttonY, buttonSize,buttonSize)) { //heal
+            
+            
+                    
+        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skill 2
+           
+   
+        
+        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //return to main command menu
+            
+        
         
         } else {
             //invalid click sound
