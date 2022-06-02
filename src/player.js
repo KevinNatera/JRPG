@@ -18,6 +18,9 @@ class Player {
         if (enemy.currentHealth - damage < 0) damage = enemy.currentHealth
         
         console.log(`Player deals ${damage} damage to enemy!`)
+        
+        let sound = document.getElementById("physical-critical-hit")
+        sound.play()
         return damage
     }
 

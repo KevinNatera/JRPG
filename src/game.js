@@ -304,8 +304,6 @@ class Game {
 
             console.log(`Enemy hp: ${this.enemy.currentHealth}`)
 
-           let sound = document.getElementById("physical-critical-hit")
-           sound.play()
             //--------Enemy is defeated
             if (this.enemy.currentHealth <= 0) {
                 setTimeout( function() { this.reportDefeated("Enemy") }.bind(this) , 1000)
@@ -330,6 +328,8 @@ class Game {
             this.player.defense = this.player.defense * 1.50
             this.player.magic = this.player.magic * 1.50
             this.message("Defense boosted for one turn!");
+            let sound = document.getElementById("defense")
+            sound.play()
             setTimeout(this.enemyTurn.bind(this,"playerDefends"), 1000)
         
         } else {
@@ -349,35 +349,29 @@ class Game {
     }
 
     enemyTurn(modifier) {
-        //Stat changes are not affected
-        //remember to bind this in setInterval call
-        // if (modifier === "defense") {
-        //     this.player.defense = this.player.defense * 1.50
-        // }
-
+    
         let enemyAttackResult = this.enemy.dealDamage(this.player);
         let enemyDamage = enemyAttackResult[0]
         this.player = enemyAttackResult[1]
         this.enemy = enemyAttackResult[2]
 
-        // cancelAnimation(playerAttackAnimationId)
-            this.player.currentHealth -= enemyDamage
-            this.reportDamage("Enemy", enemyDamage, "Player")
-            this.updatePlayerBars();
-            this.updateEnemyBars();
-            console.log(`Player hp: ${this.player.currentHealth}`)
+        this.player.currentHealth -= enemyDamage
+        this.reportDamage("Enemy", enemyDamage, "Player")
+        this.updatePlayerBars();
+        this.updateEnemyBars();
+        console.log(`Player hp: ${this.player.currentHealth}`)
 
-            if (modifier === "playerDefends") {
-                this.player.defense = this.player.defense / 1.50
-                this.player.magic = this.player.magic / 1.50
-            }
+        if (modifier === "playerDefends") {
+            this.player.defense = this.player.defense / 1.50
+            this.player.magic = this.player.magic / 1.50
+        }
                         
             //------Player is defeated
-            if (this.player.currentHealth <= 0) {
-                setTimeout( function() { this.reportDefeated("Player") }.bind(this) , 1000)
-            } else {
-                setTimeout( function() { this.menuCanvas.addEventListener("click", this.executeCommandListener) }.bind(this),1000)
-            }
+        if (this.player.currentHealth <= 0) {
+            setTimeout( function() { this.reportDefeated("Player") }.bind(this) , 1000)
+        } else {
+            setTimeout( function() { this.menuCanvas.addEventListener("click", this.executeCommandListener) }.bind(this),1000)
+        }
  
     }
     
