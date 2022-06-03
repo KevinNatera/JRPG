@@ -40,5 +40,5 @@ Players will be able to:
     - Canvas API
     - Webpack
     
-##Play Now!
+## Play Now!
 [Game Link](https://kevinnatera.github.io/Untitled-JRPG/)
