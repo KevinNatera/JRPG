@@ -42,6 +42,8 @@ class Game {
         // this.playerAttackAnimationId;
         // this.animationFrameCount = 0
         // this.currentFrame = 1    
+
+        this.retryButton = document.getElementById("retryButton")
     }
 
 //-------------------SPLASH---------------------------------
@@ -62,6 +64,13 @@ class Game {
 //-------------------BACKGROUND---------------------------------
     styleBackground(backgroundImage) {
         this.backgroundCTX.drawImage(backgroundImage,0,0,800,600)
+    }
+
+    styleRetryButton() {
+        this.retryButton.style.display = "block";
+        this.retryButton.style.position = "absolute";
+        this.retryButton.style.top = "300px";
+        this.retryButton.style.left = "400px";
     }
 
 
@@ -358,6 +367,7 @@ class Game {
                 sound.volume = 0.7
                 this.pauseSound("battle-theme")
                 setTimeout( function() { this.reportDefeated("Enemy") }.bind(this) , 1000)
+                setTimeout( () => { this.styleRetryButton() } , 500)
                 setTimeout( () => { sound.play() } , 500)
             } else {
             //------Enemy Attack--------------------------
@@ -510,6 +520,7 @@ class Game {
             sound.volume = 0.7
             this.pauseSound("battle-theme")
             setTimeout( function() { this.reportDefeated("Player") }.bind(this) , 1000)
+            setTimeout( () => { this.styleRetryButton() } , 500)
             setTimeout( () => { sound.play() } , 500)
         } else {
             setTimeout( function() { this.menuCanvas.addEventListener("click", this.executeCommandListener) }.bind(this),1000)

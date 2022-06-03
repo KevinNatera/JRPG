@@ -61,7 +61,7 @@
         function redirectToGithub() {
             window.open("https://github.com/KevinNatera","_blank")
         }
-        </script>
+    </script>
 
     <audio id="physical-critical-hit" type="audio/mpeg" >   
         <source src="assets/sounds/PhysicalCriticalHitSound.mp3" />   
@@ -95,6 +95,15 @@
         <source src="assets/sounds/GameOver.mp3" />   
     </audio>
 
+    <button id= "retryButton" onclick="refresh()" style="display:none" >
+        Retry?
+    </button>
+
+     <script>
+        function refresh() {
+            location.href = ("https://kevinnatera.github.io/Untitled-JRPG/")
+        }
+    </script>
     
 
 </body>
