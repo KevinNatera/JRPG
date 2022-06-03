@@ -1,6 +1,5 @@
 # Untitled JRPG
 
-[Game Link](https://kevinnatera.github.io/Untitled-JRPG/)
 
 ## Description
 One of the first and most basic types of story-driven games ever made was the turn based role playing game, a genre now referred to as JRPG. Thanks to modern advances in the gaming industry, you hardly see any new ones release as most gamers just want the best graphics achievable in a visceral, fast paced multiplayer game. For the few who miss the classic charm that only pixelated graphics and saving the world through menu combat bring, this is the game for you.
@@ -40,6 +39,3 @@ Players will be able to:
     - CSS
     - Canvas API
     - Webpack
-    
-## Play Now!
-[Game Link](https://kevinnatera.github.io/Untitled-JRPG/)
