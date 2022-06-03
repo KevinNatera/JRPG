@@ -41,5 +41,19 @@ Players will be able to:
     - Canvas API
     - Webpack
 
+## Credits
+
+   ### Music
+    - Battle Theme:  Final Fantasy 4 GBA Battle Theme
+    - Victory Music: Final Fantasy 7 Victory Fanfare
+    - Defeat Jingle: Super Mario Bros.
+
+   ### Sounds
+    - Attack sounds from Super Smash Bros. Ultimate
+    - Healing sound from Pokemon Red 
+    - All other sounds come from various youtube videos
+
+
+
 ## Play Now!
 [Game Link](https://kevinnatera.github.io/Untitled-JRPG/)
