@@ -64,6 +64,7 @@ class Game {
         this.backgroundCTX.drawImage(backgroundImage,0,0,800,600)
     }
 
+
 //-------------------MESSAGE---------------------------------
     styleMessageDiv() {
        this.messageDiv.style.position = "absolute";

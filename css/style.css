@@ -93,3 +93,13 @@
     filter: blur(30px);
     transition: visbility 0s 2s, opacity 1s linear;
 }
+
+#githubButton {
+    width:60px; 
+    height:60px;
+}
+
+#githubImage {
+    width: 40px;
+    height: 40px;
+}
