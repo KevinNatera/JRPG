@@ -53,14 +53,25 @@
         <source src="assets/sounds/FF4BattleTheme.mp3" />   
     </audio>
 
-     <button id= "githubButton" onclick="redirectToGithub()" >
-        <img id="githubImage" src="./assets/general_assets/github.png"/>
+     <button id= "contactButton" onclick="redirectToGithub()" >
+        <img id="contactImage" src="./assets/general_assets/github.png"/>
+    </button>
+
+    <!-- working -->
+    <button id= "contactButton" onclick="redirectToLinkedIn()" >
+        <img id="contactImage" src="./assets/general_assets/linkedIn.png"/>
     </button>
 
      <script>
         function redirectToGithub() {
             window.open("https://github.com/KevinNatera","_blank")
         }
+    </script>
+
+    <script>
+    function redirectToLinkedIn() {
+        window.open("https://www.linkedin.com/in/kevin-n-916683190/","_blank")
+    }
     </script>
 
     <audio id="physical-critical-hit" type="audio/mpeg" >   
