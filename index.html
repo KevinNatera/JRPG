@@ -10,7 +10,10 @@
     <script type="text/javascript" src="dist/main.js" charset="utf-8" defer></script>
 </head>
 <body> 
-            <div id="splash" style ="display:table-cell;width:810px;height:610px"> 
+
+    <div id="game-div">
+        
+            <div id="splash" style ="display:table-cell;width:800px;height:600px"> 
                 <p>  Welcome to a prototype JRPG!
                         <br>
                         <br>
@@ -36,29 +39,49 @@
                 </p>
 
             </div>
-            <canvas id="battle-scene" width="800" height="600"> </canvas>
-            <canvas id="player-canvas" width="400" height="430"> </canvas>
-            <canvas id="enemy-canvas" width="400" height="430"> </canvas>
-            <canvas id="menu-canvas" width="600" height="150"> </canvas>
-            <progress id="player-health-bar" value="100" max="100"></progress>
-            <progress id="enemy-health-bar" value="100" max="100"></progress>
-            <progress id="player-AP-bar" value="100" max="100"></progress>
-            <progress id="enemy-AP-bar" value="100" max="100"></progress>
-            <div id="message-div" style ="display:table-cell;width:600px;height:50px"> 
-            </div>
-            <div id="info-div" style ="display:table-cell;width:250px;height:120px"> 
+
+           
+                <canvas id="battle-scene" width="800" height="600"> </canvas>
+                <canvas id="player-canvas" width="400" height="430"> </canvas>
+                <canvas id="enemy-canvas" width="400" height="430"> </canvas>
+                <canvas id="menu-canvas" width="600" height="150"> </canvas>
+
+                <progress id="player-health-bar" value="100" max="100"></progress>
+                <progress id="enemy-health-bar" value="100" max="100"></progress>
+                <progress id="player-AP-bar" value="100" max="100"></progress>
+                <progress id="enemy-AP-bar" value="100" max="100"></progress>
+
+                <div id="message-div" style ="display:table-cell;width:600px;height:50px"></div>
+                <div id="info-div" style ="display:table-cell;width:250px;height:120px"></div>
+
             </div>
 
-    <audio id="battle-theme" type="audio/mpeg" controls loop>   
+          
+
+    <audio type="audio/mpeg"loop>   
         <source src="assets/sounds/FF4BattleTheme.mp3" />   
     </audio>
 
-     <button id= "contactButton" onclick="redirectToGithub()" >
+    <div id="mute-button">
+        <button onclick="handleMute()">Mute</button>
+    </div>
+
+    <script>
+        function handleMute() {
+            let audio = document.querySelectorAll('audio')
+
+            for (let i = 0; i < audio.length - 1 ; i++ ) {
+                audio[i].muted = !audio[i].muted
+            }
+        }
+    </script>
+
+     <button id= "github-button" onclick="redirectToGithub()" >
         <img id="contactImage" src="./assets/general_assets/github.png"/>
     </button>
 
     <!-- working -->
-    <button id= "contactButton" onclick="redirectToLinkedIn()" >
+    <button id= "linkedin-button" onclick="redirectToLinkedIn()" >
         <img id="contactImage" src="./assets/general_assets/linkedIn.png"/>
     </button>
 
@@ -112,10 +135,11 @@
 
      <script>
         function refresh() {
-            location.href = ("https://kevinnatera.github.io/Untitled-JRPG/")
+            location.href = ("https://kevinnatera.github.io/JRPG/")
         }
     </script>
     
+
 
 </body>
 </html>
