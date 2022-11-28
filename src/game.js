@@ -76,9 +76,9 @@ class Game {
 
 //-------------------MESSAGE---------------------------------
     styleMessageDiv() {
-       this.messageDiv.style.position = "absolute";
-       this.messageDiv.style.top = "50px";
-       this.messageDiv.style.left= "110px";
+    //    this.messageDiv.style.position = "absolute";
+    //    this.messageDiv.style.top = "50px";
+    //    this.messageDiv.style.left= "110px";
        this.messageDiv.innerHTML = "Battle Start!"
     }
 
@@ -119,9 +119,8 @@ class Game {
 
 //-------------------PLAYER---------------------------------
     stylePlayerCanvas(playerSpritesheet) {
-        this.playerCanvas.style.position = "absolute";
-        this.playerCanvas.style.top = "10px";
-        this.playerCanvas.style.left = "10px";
+        // this.playerCanvas.style.position = "absolute";
+        // this.playerCanvas.style.margin = "auto"  
         this.playerCanvas.addEventListener("mousemove", this.displayPlayerInfo.bind(this))
         this.playerCanvas.addEventListener("mouseout", this.hideInfoDiv.bind(this))
         this.playerCTX.drawImage(playerSpritesheet , 14 , 713, 43, 55, 200, 250, 43 * 2, 55 * 2) 
@@ -130,13 +129,13 @@ class Game {
 
     updatePlayerBars() {
         this.playerHealthBar.style.position = "absolute"
-        this.playerHealthBar.style.top = "200px";
-        this.playerHealthBar.style.left = "180px";
+        this.playerHealthBar.style.top = "255px";
+        this.playerHealthBar.style.left = "710px";
         this.playerHealthBar.value = this.player.currentHealth
         this.playerHealthBar.max = this.player.maxHealth
         this.playerAPBar.style.position = "absolute"
-        this.playerAPBar.style.top = "220px";
-        this.playerAPBar.style.left = "180px";
+        this.playerAPBar.style.top = "265px";
+        this.playerAPBar.style.left = "710px";
         this.playerAPBar.value = this.player.currentAP
         this.playerAPBar.max = this.player.maxAP
     }
@@ -146,7 +145,7 @@ class Game {
         const cursorX = event.clientX
         const cursorY = event.clientY
         
-        if (this.isPointInsideRect(cursorX, cursorY, 180, 238, 200 , 200)) { 
+        if (this.isPointInsideRect(cursorX, cursorY, 315, 285, 150 , 150)) { 
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo(`
                 Health: ${this.player.currentHealth} / ${this.player.maxHealth}
@@ -216,9 +215,9 @@ class Game {
 
 //-------------------ENEMY--------------------------------------
     styleEnemyCanvas(enemySpritesheet) {
-        this.enemyCanvas.style.position = "absolute";
-        this.enemyCanvas.style.top = "10px";
-        this.enemyCanvas.style.left = "410px";
+        // this.enemyCanvas.style.position = "absolute";
+        // this.enemyCanvas.style.top = "10px";
+        // this.enemyCanvas.style.left = "410px";
         this.enemyCanvas.addEventListener("mousemove", this.displayEnemyInfo.bind(this)) 
         this.enemyCanvas.addEventListener("mouseout", this.hideInfoDiv.bind(this))
         this.enemyCTX.drawImage(enemySpritesheet , 9 , 10, 25, 31, 200, 265, 25 * 3, 31 * 3) 
@@ -262,9 +261,9 @@ class Game {
 
 //-------------------MENU--------------------------------------
     styleDefaultMenu(basicIconSpritesheet) {
-        this.menuCanvas.style.position = "absolute";
-        this.menuCanvas.style.top = "450px";
-        this.menuCanvas.style.left= "110px";
+        // this.menuCanvas.style.position = "absolute";
+        // this.menuCanvas.style.top = "450px";
+        // this.menuCanvas.style.left= "110px";
         this.menuCTX.fillStyle = "blue"
         this.menuCTX.fillRect(0, 0,this.menuCanvas.width, this.menuCanvas.height)
         this.menuCanvas.removeEventListener("mousemove",this.displayAbilityInfoListener)
@@ -275,7 +274,7 @@ class Game {
         
 
         let buttonSize = 514
-        let offset = 519
+        let offset = 519 
 
         this.menuCTX.drawImage(basicIconSpritesheet, offset, 0, buttonSize, buttonSize, 25, 25, 100, 100) //attack button
         this.menuCTX.drawImage(basicIconSpritesheet, 0, 0, buttonSize, buttonSize, 175, 25, 100, 100) //skill button
@@ -311,26 +310,26 @@ class Game {
         const cursorX = event.clientX
          const cursorY = event.clientY
          const buttonSize = 100
-         const buttonY = 478
+         const buttonY = 518
 
 
-        if (this.isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //attack
+        if (this.isPointInsideRect(cursorX, cursorY, 287, buttonY, buttonSize,buttonSize)) { //attack  137
             
              this.repositionInfoDiv(cursorX, cursorY)
              this.fillInfo(`Deal ~${this.player.attack - this.enemy.defense} damage <br> to the enemy.`)
 
 
-        } else if (this.isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //skills
+        } else if (this.isPointInsideRect(cursorX,cursorY,437, buttonY, buttonSize,buttonSize)) { //skills 287
             
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo("Use special abilities <br> These typically cost Ability Points. (AP)")
 
-        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
+        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //items 437
     
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo("Use items to aid you <br> in battle. <br> (If you HAD any!)")
             
-        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //defend
+        } else if (this.isPointInsideRect(cursorX,cursorY, 737, buttonY, buttonSize,buttonSize)) { //defend 587px
             
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo("Boost your defense <br> by 50% for one turn.")
@@ -346,10 +345,10 @@ class Game {
         const cursorX = event.clientX
         const cursorY = event.clientY
         const buttonSize = 100
-        const buttonY = 480
+        const buttonY = 518
         
         
-        if (this.isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //attack
+        if (this.isPointInsideRect(cursorX, cursorY, 287, buttonY, buttonSize,buttonSize)) { //attack
             //Player Attack
             this.menuCanvas.removeEventListener("click",this.executeCommandListener )
             
@@ -374,17 +373,17 @@ class Game {
                 setTimeout(this.enemyTurn.bind(this),1000)
             }
             
-        } else if (this.isPointInsideRect(cursorX,cursorY, 287, buttonY, buttonSize,buttonSize)) { //skills
+        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skills
             
             this.styleAbilityMenu()
 
                     
-        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //items
+        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //items
            
             this.playSound("cancel",0.8)
             console.log("ITEMS")
         
-        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //defend
+        } else if (this.isPointInsideRect(cursorX,cursorY, 737, buttonY, buttonSize,buttonSize)) { //defend
             
             this.menuCanvas.removeEventListener("click", this.executeCommandListener)
             this.player.defense = this.player.defense * 1.50
@@ -403,25 +402,25 @@ class Game {
         const cursorX = event.clientX
          const cursorY = event.clientY
          const buttonSize = 100
-         const buttonY = 478
+         const buttonY = 518
 
 
-        if (this.isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //skill 1
+        if (this.isPointInsideRect(cursorX, cursorY, 287, buttonY, buttonSize,buttonSize)) { //skill 1
             
             // this.repositionInfoDiv(cursorX, cursorY)
             // this.fillInfo("skill1")
 
-        } else if (this.isPointInsideRect(cursorX,cursorY,287, buttonY, buttonSize,buttonSize)) { //heal
+        } else if (this.isPointInsideRect(cursorX,cursorY,437, buttonY, buttonSize,buttonSize)) { //heal
             
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo(`Recover ~${this.player.magic + 10} health <br> Costs 30 AP.`)
 
-        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skill 3
+        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //skill 3
     
             // this.repositionInfoDiv(cursorX, cursorY)
             // this.fillInfo("skill3")
             
-        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //return to main command menu
+        } else if (this.isPointInsideRect(cursorX,cursorY, 737, buttonY, buttonSize,buttonSize)) { //return to main command menu
             
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo("Go back <br> to the main command menu.")
@@ -436,14 +435,14 @@ class Game {
         const cursorX = event.clientX
         const cursorY = event.clientY
         const buttonSize = 100
-        const buttonY = 480
+        const buttonY = 518
         
         
-        if (this.isPointInsideRect(cursorX, cursorY, 137, buttonY, buttonSize,buttonSize)) { //skill 1
+        if (this.isPointInsideRect(cursorX, cursorY, 287, buttonY, buttonSize,buttonSize)) { //skill 1
             
            
             
-        } else if (this.isPointInsideRect(cursorX,cursorY, 287, buttonY, buttonSize,buttonSize)) { //heal
+        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //heal
                 
             this.styleDefaultMenu(this.basicIconSpritesheet)
             this.menuCanvas.removeEventListener("click", this.executeCommandListener)
@@ -461,10 +460,10 @@ class Game {
                setTimeout(this.enemyTurn.bind(this),1000)
            }
                 
-        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skill 2
+        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //skill 2
            
         
-        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //return to main command menu
+        } else if (this.isPointInsideRect(cursorX,cursorY, 737, buttonY, buttonSize,buttonSize)) { //return to main command menu
             
             this.styleDefaultMenu(this.basicIconSpritesheet)
         
@@ -475,9 +474,52 @@ class Game {
     }
 
 //-------------------HELPER FUNCTIONS---------------------------------
-    isPointInsideRect(pointX,pointY,rectX,rectY,rectWidth,rectHeight){
-        return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
-            (rectY <= pointY) && (rectY + rectHeight >= pointY);
+    isPointInsideRect(pointX,pointY,rectX,rectY,rectWidth,rectHeight) {
+        //a good approach but try the reverse next time (changing the button pos)
+        console.log("x = " + pointX)
+        console.log("y = " + pointY)
+
+        console.log("target x = " + rectX)
+        console.log("target y = " + rectY)
+
+        let screenX = window.screen.availWidth 
+        let screenY = window.screen.availHeight
+
+        console.log("screenX before = " + screenX)
+        console.log("screenY before = " + screenY)
+
+         if (screenX > 1440) {
+             screenX = (screenX - 1390) / 2
+         } else {
+             screenX = 1390 - screenX
+         }
+
+        if (screenX < 0) {
+            screenX = 0 
+        }
+
+         if (screenY > 900) {
+             screenY = (screenY - 850) /2
+         } else {
+             screenY = 900 - screenY
+         }
+
+         if (screenY < 0) {
+            screenY = 0 
+        }  
+
+        console.log("screenX after = " + screenX)
+        console.log("screenY after = " + screenY)
+
+         console.log("X pos after = " + `${pointX + screenX}`)
+         console.log("Y pos after = " + `${pointY + screenY}`)
+
+         console.log("----------------------------------------")
+        return  (rectX <= pointX + screenX) && (rectX + rectWidth >= pointX + screenX) &&
+        (rectY <= pointY + screenY) && (rectY + rectHeight >= pointY + screenY);
+
+        // return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
+        //     (rectY <= pointY) && (rectY + rectHeight >= pointY);
     }
 
     playSound(soundName,volume = 1.0) {

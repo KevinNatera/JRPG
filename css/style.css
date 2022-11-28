@@ -1,9 +1,38 @@
-#battle-scene {
+#game-div {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid black 5px;
+    margin: auto;
+}
 
+
+
+#battle-scene {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* margin: auto; */
+    position: absolute;
+    top: 50px;
+    border: solid black 5px;
+}
+
+#player-canvas {
+    position: relative;
+    top: 40px;
+    border: solid black 5px;
+}
+
+#enemy-canvas {
+    position: relative;
+    top: 40px;
+    border: solid black 5px;
+}
+
+#menu-canvas {
+    position: absolute;
+    top: 485px;
+    border: solid black 5px;
 }
 
 #info-div {
@@ -26,11 +55,14 @@
     font-size: 35px;
     font-family: "Verdana";
     text-align: center;
-    display: table;
     vertical-align: middle;
     background-color: white;
     word-wrap: normal;
     border: solid black 5px;
+
+    position: absolute;
+    margin: auto;
+    top: 100px;
 }
 
 
@@ -73,7 +105,10 @@
 #splash {
     background-color: blue;
     position: absolute;
+    margin: auto;
     z-index: 12;
+    border: solid black 5px;
+    top: 50px;
 }
 
 #splash > p {
@@ -94,10 +129,17 @@
     transition: visbility 0s 2s, opacity 1s linear;
 }
 
-#contactButton {
+#mute-button {
+    height: 25px;
+    width: 75px;
+}
+
+#github-button, #linkedin-button {
     width:60px; 
     height:60px;
 }
+
+
 
 #contactImage {
     width: 40px;
