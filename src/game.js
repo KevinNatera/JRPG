@@ -69,8 +69,8 @@ class Game {
     styleRetryButton() {
         this.retryButton.style.display = "block";
         this.retryButton.style.position = "absolute";
-        this.retryButton.style.top = "300px";
-        this.retryButton.style.left = "400px";
+        this.retryButton.style.top = "40%";
+        this.retryButton.style.left = "48%";
     }
 
 
@@ -130,12 +130,12 @@ class Game {
     updatePlayerBars() {
         this.playerHealthBar.style.position = "absolute"
         this.playerHealthBar.style.top = "255px";
-        this.playerHealthBar.style.left = "710px";
+        this.playerHealthBar.style.left = "33%";
         this.playerHealthBar.value = this.player.currentHealth
         this.playerHealthBar.max = this.player.maxHealth
         this.playerAPBar.style.position = "absolute"
         this.playerAPBar.style.top = "265px";
-        this.playerAPBar.style.left = "710px";
+        this.playerAPBar.style.left = "33%";
         this.playerAPBar.value = this.player.currentAP
         this.playerAPBar.max = this.player.maxAP
     }
@@ -145,7 +145,7 @@ class Game {
         const cursorX = event.clientX
         const cursorY = event.clientY
         
-        if (this.isPointInsideRect(cursorX, cursorY, 315, 285, 150 , 150)) { 
+        if (this.isPointInsideRect(cursorX, cursorY, 400, 285, 300 , 300)) { 
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo(`
                 Health: ${this.player.currentHealth} / ${this.player.maxHealth}
@@ -226,13 +226,13 @@ class Game {
 
     updateEnemyBars() {
         this.enemyHealthBar.style.position = "absolute"
-        this.enemyHealthBar.style.top = "210px";
-        this.enemyHealthBar.style.left = "570px";
+        this.enemyHealthBar.style.top = "255px";
+        this.enemyHealthBar.style.left = "61%";
         this.enemyHealthBar.value = this.enemy.currentHealth
         this.enemyHealthBar.max = this.enemy.maxHealth
         this.enemyAPBar.style.position = "absolute"
-        this.enemyAPBar.style.top = "230px";
-        this.enemyAPBar.style.left = "570px";
+        this.enemyAPBar.style.top = "265px";
+        this.enemyAPBar.style.left = "61%";
         this.enemyAPBar.value = this.enemy.currentAP
         this.enemyAPBar.max = this.enemy.maxAP
     }
@@ -241,7 +241,7 @@ class Game {
         const cursorX = event.clientX
         const cursorY = event.clientY
 
-        if (this.isPointInsideRect(cursorX, cursorY, 571, 248, 175 , 200)) { 
+        if (this.isPointInsideRect(cursorX, cursorY, 800, 300, 300 , 200)) { 
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo(`
                 Health: ${this.enemy.currentHealth} / ${this.enemy.maxHealth}
@@ -313,23 +313,23 @@ class Game {
          const buttonY = 518
 
 
-        if (this.isPointInsideRect(cursorX, cursorY, 287, buttonY, buttonSize,buttonSize)) { //attack  137
+        if (this.isPointInsideRect(cursorX, cursorY, 410, buttonY, buttonSize,buttonSize)) { //attack  137
             
              this.repositionInfoDiv(cursorX, cursorY)
              this.fillInfo(`Deal ~${this.player.attack - this.enemy.defense} damage <br> to the enemy.`)
 
 
-        } else if (this.isPointInsideRect(cursorX,cursorY,437, buttonY, buttonSize,buttonSize)) { //skills 287
+        } else if (this.isPointInsideRect(cursorX,cursorY, 560, buttonY, buttonSize,buttonSize)) { //skills 287
             
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo("Use special abilities <br> These typically cost Ability Points. (AP)")
 
-        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //items 437
+        } else if (this.isPointInsideRect(cursorX,cursorY, 710, buttonY, buttonSize,buttonSize)) { //items 437
     
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo("Use items to aid you <br> in battle. <br> (If you HAD any!)")
             
-        } else if (this.isPointInsideRect(cursorX,cursorY, 737, buttonY, buttonSize,buttonSize)) { //defend 587px
+        } else if (this.isPointInsideRect(cursorX,cursorY, 860, buttonY, buttonSize,buttonSize)) { //defend 587px
             
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo("Boost your defense <br> by 50% for one turn.")
@@ -348,7 +348,7 @@ class Game {
         const buttonY = 518
         
         
-        if (this.isPointInsideRect(cursorX, cursorY, 287, buttonY, buttonSize,buttonSize)) { //attack
+        if (this.isPointInsideRect(cursorX, cursorY, 410, buttonY, buttonSize,buttonSize)) { //attack
             //Player Attack
             this.menuCanvas.removeEventListener("click",this.executeCommandListener )
             
@@ -373,17 +373,17 @@ class Game {
                 setTimeout(this.enemyTurn.bind(this),1000)
             }
             
-        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //skills
+        } else if (this.isPointInsideRect(cursorX,cursorY, 560, buttonY, buttonSize,buttonSize)) { //skills
             
             this.styleAbilityMenu()
 
                     
-        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //items
+        } else if (this.isPointInsideRect(cursorX,cursorY, 710, buttonY, buttonSize,buttonSize)) { //items
            
             this.playSound("cancel",0.8)
             console.log("ITEMS")
         
-        } else if (this.isPointInsideRect(cursorX,cursorY, 737, buttonY, buttonSize,buttonSize)) { //defend
+        } else if (this.isPointInsideRect(cursorX,cursorY, 860, buttonY, buttonSize,buttonSize)) { //defend
             
             this.menuCanvas.removeEventListener("click", this.executeCommandListener)
             this.player.defense = this.player.defense * 1.50
@@ -405,22 +405,22 @@ class Game {
          const buttonY = 518
 
 
-        if (this.isPointInsideRect(cursorX, cursorY, 287, buttonY, buttonSize,buttonSize)) { //skill 1
+        if (this.isPointInsideRect(cursorX, cursorY, 410, buttonY, buttonSize,buttonSize)) { //skill 1
             
             // this.repositionInfoDiv(cursorX, cursorY)
             // this.fillInfo("skill1")
 
-        } else if (this.isPointInsideRect(cursorX,cursorY,437, buttonY, buttonSize,buttonSize)) { //heal
+        } else if (this.isPointInsideRect(cursorX,cursorY, 560, buttonY, buttonSize,buttonSize)) { //heal
             
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo(`Recover ~${this.player.magic + 10} health <br> Costs 30 AP.`)
 
-        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //skill 3
+        } else if (this.isPointInsideRect(cursorX,cursorY, 710, buttonY, buttonSize,buttonSize)) { //skill 3
     
             // this.repositionInfoDiv(cursorX, cursorY)
             // this.fillInfo("skill3")
             
-        } else if (this.isPointInsideRect(cursorX,cursorY, 737, buttonY, buttonSize,buttonSize)) { //return to main command menu
+        } else if (this.isPointInsideRect(cursorX,cursorY, 860, buttonY, buttonSize,buttonSize)) { //return to main command menu
             
             this.repositionInfoDiv(cursorX, cursorY)
             this.fillInfo("Go back <br> to the main command menu.")
@@ -438,11 +438,11 @@ class Game {
         const buttonY = 518
         
         
-        if (this.isPointInsideRect(cursorX, cursorY, 287, buttonY, buttonSize,buttonSize)) { //skill 1
+        if (this.isPointInsideRect(cursorX, cursorY, 410, buttonY, buttonSize,buttonSize)) { //skill 1
             
            
             
-        } else if (this.isPointInsideRect(cursorX,cursorY, 437, buttonY, buttonSize,buttonSize)) { //heal
+        } else if (this.isPointInsideRect(cursorX,cursorY, 560, buttonY, buttonSize,buttonSize)) { //heal
                 
             this.styleDefaultMenu(this.basicIconSpritesheet)
             this.menuCanvas.removeEventListener("click", this.executeCommandListener)
@@ -460,10 +460,10 @@ class Game {
                setTimeout(this.enemyTurn.bind(this),1000)
            }
                 
-        } else if (this.isPointInsideRect(cursorX,cursorY, 587, buttonY, buttonSize,buttonSize)) { //skill 2
+        } else if (this.isPointInsideRect(cursorX,cursorY, 710, buttonY, buttonSize,buttonSize)) { //skill 2
            
         
-        } else if (this.isPointInsideRect(cursorX,cursorY, 737, buttonY, buttonSize,buttonSize)) { //return to main command menu
+        } else if (this.isPointInsideRect(cursorX,cursorY, 860, buttonY, buttonSize,buttonSize)) { //return to main command menu
             
             this.styleDefaultMenu(this.basicIconSpritesheet)
         
@@ -479,47 +479,47 @@ class Game {
         console.log("x = " + pointX)
         console.log("y = " + pointY)
 
-        console.log("target x = " + rectX)
-        console.log("target y = " + rectY)
+        // console.log("target x = " + rectX)
+        // console.log("target y = " + rectY)
 
-        let screenX = window.screen.availWidth 
-        let screenY = window.screen.availHeight
+        // let screenX = window.screen.availWidth 
+        // let screenY = window.screen.availHeight
 
-        console.log("screenX before = " + screenX)
-        console.log("screenY before = " + screenY)
+        // console.log("screenX before = " + screenX)
+        // console.log("screenY before = " + screenY)
 
-         if (screenX > 1440) {
-             screenX = (screenX - 1390) / 2
-         } else {
-             screenX = 1390 - screenX
-         }
+        //  if (screenX > 1440) {
+        //      screenX = (screenX - 1390) / 2
+        //  } else {
+        //      screenX = 1390 - screenX
+        //  }
 
-        if (screenX < 0) {
-            screenX = 0 
-        }
+        // if (screenX < 0) {
+        //     screenX = 0 
+        // }
 
-         if (screenY > 900) {
-             screenY = (screenY - 850) /2
-         } else {
-             screenY = 900 - screenY
-         }
+        //  if (screenY > 900) {
+        //      screenY = (screenY - 850) /2
+        //  } else {
+        //      screenY = 900 - screenY
+        //  }
 
-         if (screenY < 0) {
-            screenY = 0 
-        }  
+        //  if (screenY < 0) {
+        //     screenY = 0 
+        // }  
 
-        console.log("screenX after = " + screenX)
-        console.log("screenY after = " + screenY)
+        // console.log("screenX after = " + screenX)
+        // console.log("screenY after = " + screenY)
 
-         console.log("X pos after = " + `${pointX + screenX}`)
-         console.log("Y pos after = " + `${pointY + screenY}`)
+        //  console.log("X pos after = " + `${pointX + screenX}`)
+        //  console.log("Y pos after = " + `${pointY + screenY}`)
 
-         console.log("----------------------------------------")
-        return  (rectX <= pointX + screenX) && (rectX + rectWidth >= pointX + screenX) &&
-        (rectY <= pointY + screenY) && (rectY + rectHeight >= pointY + screenY);
+        //  console.log("----------------------------------------")
+        // return  (rectX <= pointX + screenX) && (rectX + rectWidth >= pointX + screenX) &&
+        // (rectY <= pointY + screenY) && (rectY + rectHeight >= pointY + screenY);
 
-        // return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
-        //     (rectY <= pointY) && (rectY + rectHeight >= pointY);
+        return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
+            (rectY <= pointY) && (rectY + rectHeight >= pointY);
     }
 
     playSound(soundName,volume = 1.0) {

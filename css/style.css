@@ -10,8 +10,8 @@
 #battle-scene {
     /* display: flex;
     justify-content: center;
-    align-items: center; */
-    /* margin: auto; */
+    align-items: center;
+    margin: auto; */
     position: absolute;
     top: 50px;
     border: solid black 5px;
