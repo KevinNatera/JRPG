@@ -130,12 +130,12 @@ class Game {
     updatePlayerBars() {
         this.playerHealthBar.style.position = "absolute"
         this.playerHealthBar.style.top = "255px";
-        this.playerHealthBar.style.left = "33%";
+        this.playerHealthBar.style.left = "34%";
         this.playerHealthBar.value = this.player.currentHealth
         this.playerHealthBar.max = this.player.maxHealth
         this.playerAPBar.style.position = "absolute"
         this.playerAPBar.style.top = "265px";
-        this.playerAPBar.style.left = "33%";
+        this.playerAPBar.style.left = "34%";
         this.playerAPBar.value = this.player.currentAP
         this.playerAPBar.max = this.player.maxAP
     }
@@ -227,12 +227,12 @@ class Game {
     updateEnemyBars() {
         this.enemyHealthBar.style.position = "absolute"
         this.enemyHealthBar.style.top = "255px";
-        this.enemyHealthBar.style.left = "61%";
+        this.enemyHealthBar.style.left = "59%";
         this.enemyHealthBar.value = this.enemy.currentHealth
         this.enemyHealthBar.max = this.enemy.maxHealth
         this.enemyAPBar.style.position = "absolute"
         this.enemyAPBar.style.top = "265px";
-        this.enemyAPBar.style.left = "61%";
+        this.enemyAPBar.style.left = "59%";
         this.enemyAPBar.value = this.enemy.currentAP
         this.enemyAPBar.max = this.enemy.maxAP
     }
@@ -476,50 +476,57 @@ class Game {
 //-------------------HELPER FUNCTIONS---------------------------------
     isPointInsideRect(pointX,pointY,rectX,rectY,rectWidth,rectHeight) {
         //a good approach but try the reverse next time (changing the button pos)
-        console.log("x = " + pointX)
-        console.log("y = " + pointY)
+        console.log("MouseX = " + pointX)
+        console.log("MouseY = " + pointY)
+
+        console.log("targetX = " + rectX)
 
         // console.log("target x = " + rectX)
         // console.log("target y = " + rectY)
 
-        // let screenX = window.screen.availWidth 
-        // let screenY = window.screen.availHeight
+        let windowX = window.screen.availWidth
 
-        // console.log("screenX before = " + screenX)
+        let screenX = windowX - 1440
+        let screenY = window.screen.availHeight
+
+        console.log("screenX before = " + screenX)
         // console.log("screenY before = " + screenY)
 
-        //  if (screenX > 1440) {
-        //      screenX = (screenX - 1390) / 2
-        //  } else {
-        //      screenX = 1390 - screenX
-        //  }
 
-        // if (screenX < 0) {
-        //     screenX = 0 
-        // }
+        if (screenX < 0) {
+            screenX = 0
+        } else {
+            screenX = (screenX - 100) / 2
+            if (screenX < 0) {
+                screenX = 0
+            }
+        }
 
-        //  if (screenY > 900) {
-        //      screenY = (screenY - 850) /2
-        //  } else {
-        //      screenY = 900 - screenY
-        //  }
 
-        //  if (screenY < 0) {
-        //     screenY = 0 
-        // }  
-
-        // console.log("screenX after = " + screenX)
+        console.log("screenX after = " + screenX)
         // console.log("screenY after = " + screenY)
 
-        //  console.log("X pos after = " + `${pointX + screenX}`)
+        //  console.log("X pos after = " + `${pointX - screenX}`)
         //  console.log("Y pos after = " + `${pointY + screenY}`)
 
-        //  console.log("----------------------------------------")
-        // return  (rectX <= pointX + screenX) && (rectX + rectWidth >= pointX + screenX) &&
-        // (rectY <= pointY + screenY) && (rectY + rectHeight >= pointY + screenY);
+         console.log("X pos after = " + `${rectX + screenX}`)
 
-        return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
+         console.log("----------------------------------------")
+
+
+         if (windowX <= 1440) {
+            return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
             (rectY <= pointY) && (rectY + rectHeight >= pointY);
+         } else {
+            return  (rectX + 50 + screenX <= pointX ) && (rectX + 50 + rectWidth + screenX >= pointX) &&
+            (rectY  <= pointY) && (rectY + rectHeight >= pointY);
+         }
+         
+        // return  (rectX + 50 + screenX <= pointX ) && (rectX + 50 + rectWidth + screenX >= pointX) &&
+        // (rectY  <= pointY) && (rectY + rectHeight >= pointY);
+
+        // return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
+        //     (rectY <= pointY) && (rectY + rectHeight >= pointY);
     }
 
     playSound(soundName,volume = 1.0) {
