@@ -475,11 +475,11 @@ class Game {
 
 //-------------------HELPER FUNCTIONS---------------------------------
     isPointInsideRect(pointX,pointY,rectX,rectY,rectWidth,rectHeight) {
-        //a good approach but try the reverse next time (changing the button pos)
-        console.log("MouseX = " + pointX)
-        console.log("MouseY = " + pointY)
+        
+        // console.log("MouseX = " + pointX)
+        // console.log("MouseY = " + pointY)
 
-        console.log("targetX = " + rectX)
+        // console.log("targetX = " + rectX)
 
         // console.log("target x = " + rectX)
         // console.log("target y = " + rectY)
@@ -489,7 +489,7 @@ class Game {
         let screenX = windowX - 1440
         let screenY = window.screen.availHeight
 
-        console.log("screenX before = " + screenX)
+        // console.log("screenX before = " + screenX)
         // console.log("screenY before = " + screenY)
 
 
@@ -503,22 +503,22 @@ class Game {
         }
 
 
-        console.log("screenX after = " + screenX)
+        // console.log("screenX after = " + screenX)
         // console.log("screenY after = " + screenY)
 
         //  console.log("X pos after = " + `${pointX - screenX}`)
         //  console.log("Y pos after = " + `${pointY + screenY}`)
 
-         console.log("X pos after = " + `${rectX + screenX}`)
+        //  console.log("X pos after = " + `${rectX + screenX}`)
 
-         console.log("----------------------------------------")
+        //  console.log("----------------------------------------")
 
 
          if (windowX <= 1440) {
             return  (rectX <= pointX) && (rectX + rectWidth >= pointX) &&
             (rectY <= pointY) && (rectY + rectHeight >= pointY);
          } else {
-            return  (rectX + 50 + screenX <= pointX ) && (rectX + 50 + rectWidth + screenX >= pointX) &&
+            return  (rectX + 40 + screenX <= pointX ) && (rectX + 40 + rectWidth + screenX >= pointX) &&
             (rectY  <= pointY) && (rectY + rectHeight >= pointY);
          }
          
