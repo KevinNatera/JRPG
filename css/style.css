@@ -20,13 +20,13 @@
 #player-canvas {
     position: relative;
     top: 40px;
-    border: solid black 5px;
+    /* border: solid black 5px; */
 }
 
 #enemy-canvas {
     position: relative;
     top: 40px;
-    border: solid black 5px;
+    /* border: solid black 5px; */
 }
 
 #menu-canvas {
