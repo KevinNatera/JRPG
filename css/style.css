@@ -132,6 +132,9 @@
 #mute-button {
     height: 25px;
     width: 75px;
+    position: absolute;
+    margin: auto;
+    left: 47%;
 }
 
 #github-button, #linkedin-button {

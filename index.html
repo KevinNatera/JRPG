@@ -11,6 +11,16 @@
 </head>
 <body> 
 
+    <button id="mute-button" onclick="handleMute()">Mute</button>
+
+    <button id= "github-button" onclick="redirectToGithub()" >
+        <img id="contactImage" src="./assets/general_assets/github.png"/>
+    </button>
+
+    <button id= "linkedin-button" onclick="redirectToLinkedIn()" >
+        <img id="contactImage" src="./assets/general_assets/linkedIn.png"/>
+    </button>
+
     <div id="game-div" width="800" height="600">
         
             <div id="splash" style ="display:table-cell;width:800px;height:600px"> 
@@ -62,10 +72,6 @@
         <source src="assets/sounds/FF4BattleTheme.mp3" />   
     </audio>
 
-    
-    <button id="mute-button" onclick="handleMute()">Mute</button>
-    
-
     <script>
         function handleMute() {
             let muteButton = document.getElementById("mute-button")
@@ -84,15 +90,6 @@
         }
 
     </script>
-
-     <button id= "github-button" onclick="redirectToGithub()" >
-        <img id="contactImage" src="./assets/general_assets/github.png"/>
-    </button>
-
-    <!-- working -->
-    <button id= "linkedin-button" onclick="redirectToLinkedIn()" >
-        <img id="contactImage" src="./assets/general_assets/linkedIn.png"/>
-    </button>
 
      <script>
         function redirectToGithub() {
